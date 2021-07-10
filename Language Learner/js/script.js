@@ -13,7 +13,23 @@ function showQuestion(q){
 
     alts.forEach(function(element,index){
         element.textContent = q.alternatives[index];
+
+        element.addEventListener('click', function(){
+            //Check correct answer
+            if (q.correctAnswer == index){
+                console.log('Correct Answer!');
+            }
+            else {
+                console.log('Wrong Answer!');
+            }
+        })
     })
 }
 
 showQuestion(question);
+
+let btn = document.getElementById('btn');
+
+btn.addEventListener('click', function(){
+    console.log('Clicked!');
+})
