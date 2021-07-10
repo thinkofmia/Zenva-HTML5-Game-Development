@@ -68,10 +68,12 @@ let app = {
             //correct
             console.log("correct!");
             this.score++;
+            this.showResult(true);
         }
         else {
             //wrong
             console.log("wrong!");
+            this.showResult(false);
         }
 
         //refresh stats
@@ -92,6 +94,28 @@ let app = {
     updateStats: function(){
         let scoreDiv = document.getElementById('score');
         scoreDiv.textContent =  `Your score: ${this.score}`;
+    },
+
+    showResult: function(isCorrect){
+        let resultDiv = document.getElementById('result');
+        let result = '';
+        if (isCorrect){
+            result = 'Correct Answer!';
+        }
+        else{
+            //get current question
+            let currQuestion = questions[this.currPosition];
+
+            //get correct answer
+            let correctAnswIndex = currQuestion.correctAnswer;
+
+            //get correct answer text
+            let correctAnsText = currQuestion.alternatives[correctAnswIndex];
+
+            result = `Wrong! Correct Answer: ${correctAnsText}`;
+        }
+
+        resultDiv.textContent = result;
     }
 }
 
