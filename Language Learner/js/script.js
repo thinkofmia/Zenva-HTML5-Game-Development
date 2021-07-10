@@ -31,6 +31,9 @@ let alts = document.querySelectorAll('.alternative');
 
 let app = {
     start: function(){
+
+        this.currPosition = 0;
+
         alts.forEach(function(element,index){
             element.addEventListener('click', function(){
                 this.checkAnswer(index);
@@ -47,13 +50,10 @@ let app = {
             });
         */
     
-        this.showQuestion(question);
+        this.showQuestion(questions[this.currPosition]);
     },
 
     showQuestion: function(q){
-
-        this.currQuestion = q;
-
         titleDiv.textContent = q.title;
         alts.forEach(function(element,index){
             element.textContent = q.alternatives[index];
@@ -61,6 +61,8 @@ let app = {
     },
 
     checkAnswer: function(userSelected){
+        this.currQuestion = questions[this.currPosition];
+
         if (this.currQuestion.correctAnswer == userSelected){
             //correct
             console.log("correct!");
@@ -69,7 +71,20 @@ let app = {
             //wrong
             console.log("wrong!");
         }
+
+        //increase position
+        this.increasePosition();
+        //show next question
+        this.showQuestion(questions[this.currPosition]);
     },
+
+    increasePosition: function(){
+        this.currPosition++;
+
+        if (this.currPosition == questions.length){
+            this.currPosition = 0;
+        }
+    }
 }
 
 let titleDiv = document.getElementById('title');
