@@ -12,6 +12,16 @@ let app = {
                 this.checkAnswer(index);
             }.bind(this));
         }.bind(this));
+
+        /*alternaative way
+        alts.forEach((element, index) => {
+                    
+            element.addEventListener('click', () => {
+                // check correct answer
+                this.checkAnswer(index);
+            });
+            });
+        */
     
         this.showQuestion(question);
     },
