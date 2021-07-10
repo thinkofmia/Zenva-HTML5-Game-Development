@@ -33,6 +33,7 @@ let app = {
     start: function(){
 
         this.currPosition = 0;
+        this.score = 0;
 
         alts.forEach(function(element,index){
             element.addEventListener('click', function(){
@@ -66,12 +67,15 @@ let app = {
         if (this.currQuestion.correctAnswer == userSelected){
             //correct
             console.log("correct!");
+            this.score++;
         }
         else {
             //wrong
             console.log("wrong!");
         }
 
+        //refresh stats
+        this.updateStats();
         //increase position
         this.increasePosition();
         //show next question
@@ -84,15 +88,13 @@ let app = {
         if (this.currPosition == questions.length){
             this.currPosition = 0;
         }
+    },
+    updateStats: function(){
+        let scoreDiv = document.getElementById('score');
+        scoreDiv.textContent =  `Your score: ${this.score}`;
     }
 }
 
 let titleDiv = document.getElementById('title');
-
-let btn = document.getElementById('btn');
-
-btn.addEventListener('click', function(){
-    console.log('Clicked!');
-})
 
 app.start();
