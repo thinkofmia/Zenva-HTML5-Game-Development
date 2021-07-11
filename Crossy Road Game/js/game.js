@@ -35,10 +35,15 @@ gameScene.create = function() {
     // Scaling player
     this.player.setScale(0.5);
 
-    /*
-    // Create an enemy
-    this.enemy1 = this.add.sprite(250, gameH/2, 'enemy');
+    //Goal
+    this.goal = this.add.sprite(gameW - 80, gameH/2, 'goal');
+    this.goal.setScale(0.6);
 
+    // Create an enemy
+    this.enemy1 = this.add.sprite(180, gameH/2, 'enemy');
+    this.enemy1.flipX = true;
+    this.enemy1.setScale(0.6);
+/*
     this.enemy1.scaleX = 3;
     this.enemy1.scaleY = 3;
 
@@ -58,13 +63,8 @@ gameScene.create = function() {
     this.enemy2.displayWidth = 300;
 
     // Flip
-    this.enemy1.flipX = true;
     this.enemy1.flipY = true;
     */
-
-    //Goal
-    this.goal = this.add.sprite(gameW - 80, gameH/2, 'goal');
-    this.goal.setScale(0.6);
   };
 
 // Updates to 60 times per second
