@@ -28,7 +28,8 @@ gameScene.create = function() {
     // Scaling player
     this.player.setScale(0.5);
 
-    // create an enemy
+    /*
+    // Create an enemy
     this.enemy1 = this.add.sprite(250, gameH/2, 'enemy');
 
     this.enemy1.scaleX = 3;
@@ -52,12 +53,13 @@ gameScene.create = function() {
     // Flip
     this.enemy1.flipX = true;
     this.enemy1.flipY = true;
+    */
   };
 
 // Updates to 60 times per second
 gameScene.update = function(){
-    // this.enemy1.x += 1;
-    
+    /*
+    // this.enemy1.x += 1;  
     this.enemy1.angle += 1;
     
     // Check if we've reached scale of 2
@@ -65,6 +67,12 @@ gameScene.update = function(){
       // Make the player grow
       this.player.scaleX += 0.01;
       this.player.scaleY += 0.01;
+    }*/
+
+    //Check for active input
+    if (this.input.activePointer.isDown){
+        //Player walks
+        this.player.x += 1;
     }
     
   };
