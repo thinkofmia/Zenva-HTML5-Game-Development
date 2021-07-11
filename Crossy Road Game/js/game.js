@@ -47,14 +47,22 @@ gameScene.create = function() {
     this.goal = this.add.sprite(gameW - 80, gameH/2, 'goal');
     this.goal.setScale(0.6);
 
+    this.enemies = this.add.group();
+
     // Create an enemy
-    this.enemy1 = this.add.sprite(180, gameH/2, 'enemy');
-    this.enemy1.flipX = true;
-    this.enemy1.setScale(0.6);
+    this.enemy = this.add.sprite(180, gameH/2, 'enemy');
+    this.enemy.flipX = true;
+    //this.enemy.setScale(0.6);
 
     let dir = Math.random() < 0.5 ? 1 : -1;
     let speed = this.enemyMinSpeed + Math.random()*(this.enemyMaxSpeed-this.enemyMinSpeed);
-    this.enemy1.speed = dir * speed;
+    this.enemy.speed = dir * speed;
+
+    this.enemies.add(this.enemy);
+
+    Phaser.Actions.ScaleXY(this.enemies.getChildren(), -0.4, -0.4);
+
+    //console.log(this.enemies.getChildren());
 
 /*
     this.enemy1.scaleX = 3;
@@ -112,7 +120,7 @@ gameScene.update = function(){
     }
 
     //Enemy overlap check
-    let enemyRect = this.enemy1.getBounds();
+    let enemyRect = this.enemy.getBounds();
 
     if (Phaser.Geom.Intersects.RectangleToRectangle(playerRect, enemyRect)){
         console.log('Oww!');
@@ -123,13 +131,13 @@ gameScene.update = function(){
     }
     
     //Enemy Movement
-    this.enemy1.y += this.enemy1.speed;
+    this.enemy.y += this.enemy.speed;
 
-    let conditionUp = this.enemy1.speed < 0 && this.enemy1.y <= this.enemyMinY;
-    let conditionDown = this.enemy1.speed > 0 && this.enemy1.y >= this.enemyMaxY;
+    let conditionUp = this.enemy.speed < 0 && this.enemy.y <= this.enemyMinY;
+    let conditionDown = this.enemy.speed > 0 && this.enemy.y >= this.enemyMaxY;
     //Check if not pass min y and max y, reverse speed
     if (conditionUp || conditionDown){
-        this.enemy1.speed *= -1;
+        this.enemy.speed *= -1;
     }
   };
 
