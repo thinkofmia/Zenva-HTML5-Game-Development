@@ -13,6 +13,9 @@ gameScene.init = function(){
     //Boundaries
     this.enemyMinY = 80;
     this.enemyMaxY = 280;
+
+    //Unterminate gameover
+    this.isTerminating = false;
 }
 
 // Load Assets
@@ -119,6 +122,9 @@ gameScene.update = function(){
       this.player.scaleY += 0.01;
     }*/
 
+    //Dont' execute if terminating
+    if (this.isTerminating) return;
+
     //Check for active input
     if (this.input.activePointer.isDown){
         //Player walks
@@ -168,9 +174,19 @@ gameScene.update = function(){
   };
 
 gameScene.gameOver = function(){
+    //Initated game over sequence
+    this.isTerminating = true;
+
+    //Shake Camera
     this.cameras.main.shake(500);
 
-    //this.scene.restart();
+    //Listen for event complettion
+    this.cameras.main.on('camerashakecomplete', function(camera, effect){
+        //Restart scene
+        this.scene.restart();
+    }, this);
+
+    
 }
 
 // Set Configuration of Game
