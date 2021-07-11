@@ -182,10 +182,14 @@ gameScene.gameOver = function(){
 
     //Listen for event complettion
     this.cameras.main.on('camerashakecomplete', function(camera, effect){
-        //Restart scene
-        this.scene.restart();
+        //Fade Out
+        this.cameras.main.fade(500);
     }, this);
 
+    this.cameras.main.on('camerafadeoutcomplete', function(camera,effect){
+    //Restart scene
+    this.scene.restart();
+    }, this);
     
 }
 
