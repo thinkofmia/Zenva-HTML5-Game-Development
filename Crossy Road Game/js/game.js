@@ -38,7 +38,7 @@ gameScene.create = function() {
     //bg.setPosition(gameW/2, gameH/2);
 
     //Create Player Sprite
-    this.player = this.add.sprite(70, gameH/2, 'player');
+    this.player = this.add.sprite(20, gameH/2, 'player');
 
     // Scaling player
     this.player.setScale(0.5);
@@ -47,21 +47,39 @@ gameScene.create = function() {
     this.goal = this.add.sprite(gameW - 80, gameH/2, 'goal');
     this.goal.setScale(0.6);
 
-    this.enemies = this.add.group();
+    this.enemies = this.add.group({
+        key: 'enemy',
+        repeat: 5,
+        setXY: {
+          x: 90,
+          y: 100,
+          stepX: 80,
+          stepY: 20
+        }
+      });
 
+    /*
     // Create an enemy
     this.enemy = this.add.sprite(180, gameH/2, 'enemy');
     this.enemy.flipX = true;
     //this.enemy.setScale(0.6);
 
-    let dir = Math.random() < 0.5 ? 1 : -1;
-    let speed = this.enemyMinSpeed + Math.random()*(this.enemyMaxSpeed-this.enemyMinSpeed);
-    this.enemy.speed = dir * speed;
+    
+    */
 
-    this.enemies.add(this.enemy);
+    //this.enemies.add(this.enemy);
 
     Phaser.Actions.ScaleXY(this.enemies.getChildren(), -0.4, -0.4);
 
+    //Set FlipX and speed
+    Phaser.Actions.Call(this.enemies.getChildren(), function(enemy){
+        //Flip enemy
+        enemy.flipX = true
+
+        let dir = Math.random() < 0.5 ? 1 : -1;
+        let speed = this.enemyMinSpeed + Math.random()*(this.enemyMaxSpeed-this.enemyMinSpeed);
+        enemy.speed = dir * speed;
+    }, this);
     //console.log(this.enemies.getChildren());
 
 /*
@@ -119,26 +137,36 @@ gameScene.update = function(){
         return;
     }
 
-    //Enemy overlap check
-    let enemyRect = this.enemy.getBounds();
+    //Get Enemies
+    let enemies = this.enemies.getChildren();
+    let numEnemies = enemies.length;
 
-    if (Phaser.Geom.Intersects.RectangleToRectangle(playerRect, enemyRect)){
-        console.log('Oww!');
+    for (let i=0; i<numEnemies;i++){
+        //Enemy overlap check
+        let enemyRect = enemies[i].getBounds();
 
-        //Restart Scene
-        this.scene.restart();
-        return;
+        if (Phaser.Geom.Intersects.RectangleToRectangle(playerRect, enemyRect)){
+            console.log('Oww!');
+
+            //Restart Scene
+            this.scene.restart();
+            return;
+        }
+
+        //Enemy Movement
+        enemies[i].y += enemies[i].speed;
+
+        let conditionUp = enemies[i].speed < 0 && enemies[i].y <= this.enemyMinY;
+        let conditionDown = enemies[i].speed > 0 && enemies[i].y >= this.enemyMaxY;
+        //Check if not pass min y and max y, reverse speed
+        if (conditionUp || conditionDown){
+            enemies[i].speed *= -1;
+        }
     }
+
     
-    //Enemy Movement
-    this.enemy.y += this.enemy.speed;
-
-    let conditionUp = this.enemy.speed < 0 && this.enemy.y <= this.enemyMinY;
-    let conditionDown = this.enemy.speed > 0 && this.enemy.y >= this.enemyMaxY;
-    //Check if not pass min y and max y, reverse speed
-    if (conditionUp || conditionDown){
-        this.enemy.speed *= -1;
-    }
+    
+    
   };
 
 // Set Configuration of Game
