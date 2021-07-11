@@ -133,8 +133,7 @@ gameScene.update = function(){
         console.log('Reached Goal!');
 
         //Restart Scene
-        this.scene.restart();
-        return;
+        return this.gameOver();
     }
 
     //Get Enemies
@@ -149,8 +148,7 @@ gameScene.update = function(){
             console.log('Oww!');
 
             //Restart Scene
-            this.scene.restart();
-            return;
+            return this.gameOver();
         }
 
         //Enemy Movement
@@ -168,6 +166,10 @@ gameScene.update = function(){
     
     
   };
+
+gameScene.gameOver = function(){
+    this.scene.restart();
+}
 
 // Set Configuration of Game
 let config = {
