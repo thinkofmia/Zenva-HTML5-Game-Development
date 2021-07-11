@@ -168,7 +168,9 @@ gameScene.update = function(){
   };
 
 gameScene.gameOver = function(){
-    this.scene.restart();
+    this.cameras.main.shake(500);
+
+    //this.scene.restart();
 }
 
 // Set Configuration of Game
