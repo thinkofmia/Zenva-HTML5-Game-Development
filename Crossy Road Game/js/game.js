@@ -110,6 +110,17 @@ gameScene.update = function(){
         this.scene.restart();
         return;
     }
+
+    //Enemy overlap check
+    let enemyRect = this.enemy1.getBounds();
+
+    if (Phaser.Geom.Intersects.RectangleToRectangle(playerRect, enemyRect)){
+        console.log('Oww!');
+
+        //Restart Scene
+        this.scene.restart();
+        return;
+    }
     
     //Enemy Movement
     this.enemy1.y += this.enemy1.speed;
