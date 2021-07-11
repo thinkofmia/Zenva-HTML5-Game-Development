@@ -50,6 +50,10 @@ gameScene.create = function() {
     this.enemy1 = this.add.sprite(180, gameH/2, 'enemy');
     this.enemy1.flipX = true;
     this.enemy1.setScale(0.6);
+
+    let dir = Math.random() < 0.5 ? 1 : -1;
+    this.enemy1.speed = dir * this.enemySpeed;
+
 /*
     this.enemy1.scaleX = 3;
     this.enemy1.scaleY = 3;
@@ -106,13 +110,13 @@ gameScene.update = function(){
     }
     
     //Enemy Movement
-    this.enemy1.y += this.enemySpeed;
+    this.enemy1.y += this.enemy1.speed;
 
-    let conditionUp = this.enemySpeed < 0 && this.enemy1.y <= this.enemyMinY;
-    let conditionDown = this.enemySpeed > 0 && this.enemy1.y >= this.enemyMaxY;
+    let conditionUp = this.enemy1.speed < 0 && this.enemy1.y <= this.enemyMinY;
+    let conditionDown = this.enemy1.speed > 0 && this.enemy1.y >= this.enemyMaxY;
     //Check if not pass min y and max y, reverse speed
     if (conditionUp || conditionDown){
-        this.enemySpeed *= -1;
+        this.enemy1.speed *= -1;
     }
   };
 
