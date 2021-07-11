@@ -7,7 +7,8 @@ gameScene.init = function(){
     this.playerSpeed = 3;
 
     //Enemy Speed
-    this.enemySpeed = 3;
+    this.enemyMinSpeed = 1;
+    this.enemyMaxSpeed = 5;
 
     //Boundaries
     this.enemyMinY = 80;
@@ -52,7 +53,8 @@ gameScene.create = function() {
     this.enemy1.setScale(0.6);
 
     let dir = Math.random() < 0.5 ? 1 : -1;
-    this.enemy1.speed = dir * this.enemySpeed;
+    let speed = this.enemyMinSpeed + Math.random()*(this.enemyMaxSpeed-this.enemyMinSpeed);
+    this.enemy1.speed = dir * speed;
 
 /*
     this.enemy1.scaleX = 3;
