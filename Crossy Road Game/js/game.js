@@ -1,6 +1,12 @@
 // Create a Scene
 let gameScene = new Phaser.Scene('Game');
 
+// Initiate Scene Parameters
+gameScene.init = function(){
+    //Player Speed
+    this.playerSpeed = 5;
+}
+
 // Load Assets
 gameScene.preload = function(){
     // Load Images
@@ -72,7 +78,7 @@ gameScene.update = function(){
     //Check for active input
     if (this.input.activePointer.isDown){
         //Player walks
-        this.player.x += 1;
+        this.player.x += this.playerSpeed;
     }
     
   };
