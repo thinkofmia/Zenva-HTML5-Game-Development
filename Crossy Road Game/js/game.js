@@ -8,6 +8,10 @@ gameScene.init = function(){
 
     //Enemy Speed
     this.enemySpeed = 3;
+
+    //Boundaries
+    this.enemyMinY = 80;
+    this.enemyMaxY = 280;
 }
 
 // Load Assets
@@ -103,6 +107,15 @@ gameScene.update = function(){
     
     //Enemy Movement
     this.enemy1.y += this.enemySpeed;
+
+    //Check if not pass min y
+    if (this.enemy1.y <= this.enemyMinY){
+        this.enemySpeed *= -1;
+    }
+    //Check if not pass max y
+    if (this.enemy1.y >= this.enemyMaxY){
+        this.enemySpeed *= -1;
+    }
   };
 
 // Set Configuration of Game
