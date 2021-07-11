@@ -5,6 +5,9 @@ let gameScene = new Phaser.Scene('Game');
 gameScene.init = function(){
     //Player Speed
     this.playerSpeed = 3;
+
+    //Enemy Speed
+    this.enemySpeed = 3;
 }
 
 // Load Assets
@@ -98,6 +101,8 @@ gameScene.update = function(){
         return;
     }
     
+    //Enemy Movement
+    this.enemy1.y += this.enemySpeed;
   };
 
 // Set Configuration of Game
