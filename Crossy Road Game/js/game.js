@@ -72,7 +72,7 @@ gameScene.create = function() {
 
     //this.enemies.add(this.enemy);
 
-    Phaser.Actions.ScaleXY(this.enemies.getChildren(), -0.4, -0.4);
+    Phaser.Actions.ScaleXY(this.enemies.getChildren(), -0.5, -0.5);
 
     //Set FlipX and speed
     Phaser.Actions.Call(this.enemies.getChildren(), function(enemy){
