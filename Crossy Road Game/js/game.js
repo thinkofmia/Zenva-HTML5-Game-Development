@@ -4,7 +4,7 @@ let gameScene = new Phaser.Scene('Game');
 // Initiate Scene Parameters
 gameScene.init = function(){
     //Player Speed
-    this.playerSpeed = 5;
+    this.playerSpeed = 3;
 }
 
 // Load Assets
