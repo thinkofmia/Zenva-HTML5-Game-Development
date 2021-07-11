@@ -110,12 +110,8 @@ gameScene.update = function(){
 
     let conditionUp = this.enemySpeed < 0 && this.enemy1.y <= this.enemyMinY;
     let conditionDown = this.enemySpeed > 0 && this.enemy1.y >= this.enemyMaxY;
-    //Check if not pass min y
-    if (conditionUp){
-        this.enemySpeed *= -1;
-    }
-    //Check if not pass max y
-    if (conditionDown){
+    //Check if not pass min y and max y, reverse speed
+    if (conditionUp || conditionDown){
         this.enemySpeed *= -1;
     }
   };
