@@ -13,6 +13,7 @@ gameScene.preload = function(){
     this.load.image('background', 'assets/background.png');
     this.load.image('player', 'assets/player.png');
     this.load.image('enemy', 'assets/dragon.png');
+    this.load.image('goal', 'assets/treasure.png');
   };
 
 // Called once after the preload ends
@@ -60,6 +61,10 @@ gameScene.create = function() {
     this.enemy1.flipX = true;
     this.enemy1.flipY = true;
     */
+
+    //Goal
+    this.goal = this.add.sprite(gameW - 80, gameH/2, 'goal');
+    this.goal.setScale(0.6);
   };
 
 // Updates to 60 times per second
