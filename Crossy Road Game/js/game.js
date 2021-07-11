@@ -23,13 +23,13 @@ gameScene.create = function() {
     //bg.setPosition(gameW/2, gameH/2);
 
     //Create Player Sprite
-    this.player = this.add.sprite(70, 180, 'player');
+    this.player = this.add.sprite(70, gameH/2, 'player');
 
     // Scaling player
     this.player.setScale(0.5);
 
     // create an enemy
-    this.enemy1 = this.add.sprite(250, 180, 'enemy');
+    this.enemy1 = this.add.sprite(250, gameH/2, 'enemy');
 
     this.enemy1.scaleX = 3;
     this.enemy1.scaleY = 3;
@@ -46,7 +46,7 @@ gameScene.create = function() {
     console.log(this.enemy1);
 
     //Create a second enemy
-    this.enemy2 = this.add.sprite(450, 180, 'enemy');
+    this.enemy2 = this.add.sprite(450, gameH/2, 'enemy');
     this.enemy2.displayWidth = 300;
 
     // Flip
