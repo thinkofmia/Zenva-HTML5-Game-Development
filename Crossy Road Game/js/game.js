@@ -85,6 +85,18 @@ gameScene.update = function(){
         //Player walks
         this.player.x += this.playerSpeed;
     }
+
+    //Treasure overlap check
+    let playerRect = this.player.getBounds();
+    let treasureRect = this.goal.getBounds();
+
+    if (Phaser.Geom.Intersects.RectangleToRectangle(playerRect, treasureRect)){
+        console.log('Reached Goal!');
+
+        //Restart Scene
+        this.scene.restart();
+        return;
+    }
     
   };
 
