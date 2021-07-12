@@ -2,7 +2,14 @@
 let gameScene = new Phaser.Scene('Game');
 
 // some parameters for our scene
-gameScene.init = function() {};
+gameScene.init = function() {
+  //Game Stats
+  this.stats = {
+    health: 100,
+    fun: 100
+  }
+
+};
 
 // load asset files for our game
 gameScene.preload = function() {
