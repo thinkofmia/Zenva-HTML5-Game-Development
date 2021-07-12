@@ -96,9 +96,29 @@ gameScene.create = function() {
       yoyo: true
     });
 
+    //Transparency tween
+    item.alphaTween = this.tweens.add({
+      targets: item,
+      alpha: 0.7,
+      duration: 200,
+      paused: true,
+    });
+
     item.on('pointerdown', function(pointer){
       item.resizeTween.restart();
-    })
+    });
+
+    item.on('pointerover', function(pointer){
+      item.alphaTween.restart();
+    });
+
+    item.on('pointerout', function(pointer){
+      //Stop alpha tween
+      item.alphaTween.stop();
+      //Set no transparency
+      item.alpha = 1;
+    });
+
   }, this);
 };
 
