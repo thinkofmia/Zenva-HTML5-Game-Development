@@ -24,7 +24,7 @@ gameScene.preload = function() {
 // executed once, after assets were loaded
 gameScene.create = function() {
   //Load Background
-  this.add.sprite(0,0,'background').setOrigin(0,0);
+  let bg = this.add.sprite(0,0,'background').setOrigin(0,0);
 
   /*let soundSample = this.sound.add('correct');
   soundSample.play();
@@ -82,6 +82,14 @@ gameScene.create = function() {
   //Make Bg Interactive
   bg.setInteractive();
   
+  Phaser.Actions.Call(this.items.getChildren(), function(item){
+    // Make item interactive
+    item.setInteractive();
+
+    item.on('pointerdown', function(pointer){
+      console.log('You clicked '+ item.texture.key);
+    })
+  }, this);
 };
 
 // our game's configuration
