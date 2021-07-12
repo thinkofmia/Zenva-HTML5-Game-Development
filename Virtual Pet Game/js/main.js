@@ -37,7 +37,17 @@ gameScene.create = function() {
   let bg = this.add.sprite(0,0,'backyard');
   bg.setOrigin(0,0);
 
-  this.pet = this.add.sprite(100,200,'pet',0);
+  this.pet = this.add.sprite(100,200,'pet',0).setInteractive();
+
+  //Make pet draggable
+  this.input.setDraggable(this.pet);
+
+  //Follow pointer when dragging
+  this.input.on('drag', function(pointer, gameObject, dragX, dragY){
+    //Make sprite located at dragging
+    gameObject.x = dragX;
+    gameObject.y = dragY;
+  });
 
   this.createUI();
 };
