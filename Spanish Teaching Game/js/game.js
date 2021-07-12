@@ -139,6 +139,12 @@ gameScene.create = function() {
 
   };
 
+  //Text Object
+  this.wordText = this.add.text(30,20,'hello',{
+    font: '24px Open Sans',
+    fill: '#ffffff'
+  });
+
   this.showNextQuestion();
 };
 
@@ -150,6 +156,7 @@ gameScene.showNextQuestion = function(){
   //Play a sound for the word
   nextWord.sound.play();
   //Show text of word
+  this.wordText.setText(nextWord.spanish);
 }
 
 // our game's configuration
