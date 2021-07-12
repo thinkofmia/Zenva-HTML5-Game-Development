@@ -119,6 +119,8 @@ gameScene.create = function() {
     item.on('pointerdown', function(pointer){
       item.resizeTween.restart();
 
+      let result = this.processAnswer(this.words[i].spanish);
+
       //Show next question
       this.showNextQuestion();
     }, this);
@@ -145,18 +147,41 @@ gameScene.create = function() {
     fill: '#ffffff'
   });
 
+  //Correct/Wrong Sounds
+  this.correctSound = this.sound.add('correct');
+  this.wrongSound = this.sound.add('wrong');
+
   this.showNextQuestion();
 };
 
 //Show new question
 gameScene.showNextQuestion = function(){
   //Select a random word
-  let nextWord = Phaser.Math.RND.pick(this.words);
+  this.nextWord = Phaser.Math.RND.pick(this.words);
 
   //Play a sound for the word
-  nextWord.sound.play();
+  this.nextWord.sound.play();
   //Show text of word
-  this.wordText.setText(nextWord.spanish);
+  this.wordText.setText(this.nextWord.spanish);
+}
+
+//Check answer
+gameScene.processAnswer = function(userResponse){
+  //Compare user response with correct response
+  if (userResponse == this.nextWord.spanish){
+    //Correct
+
+    //Play sound
+    this.correctSound.play();
+    return true;
+  }
+  else {
+    //Wrong
+
+    //Play sound
+    this.wrongSound.play();
+    return false;
+  }
 }
 
 // our game's configuration
