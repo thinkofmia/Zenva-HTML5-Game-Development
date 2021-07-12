@@ -134,6 +134,9 @@ gameScene.create = function() {
       item.alpha = 1;
     }, this);
 
+    //Create Sound for each word
+    this.words[i].sound = this.sound.add(this.words[i].key + 'Audio');
+
   };
 
   this.showNextQuestion();
@@ -142,10 +145,10 @@ gameScene.create = function() {
 //Show new question
 gameScene.showNextQuestion = function(){
   //Select a random word
-  //let nextWord = Phaser.Math.RND.pick(this.words);
+  let nextWord = Phaser.Math.RND.pick(this.words);
 
   //Play a sound for the word
-
+  nextWord.sound.play();
   //Show text of word
 }
 
