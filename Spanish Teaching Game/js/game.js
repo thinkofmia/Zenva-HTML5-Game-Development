@@ -28,9 +28,9 @@ gameScene.create = function() {
 
   let soundSample = this.sound.add('correct');
   soundSample.play();
-  soundSample.stop();
-  soundSample.pause();
-  soundSample.resume();
+  //soundSample.stop();
+  //soundSample.pause();
+  //soundSample.resume();
 
 };
 
