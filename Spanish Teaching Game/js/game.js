@@ -26,12 +26,59 @@ gameScene.create = function() {
   //Load Background
   this.add.sprite(0,0,'background').setOrigin(0,0);
 
-  let soundSample = this.sound.add('correct');
+  /*let soundSample = this.sound.add('correct');
   soundSample.play();
-  //soundSample.stop();
-  //soundSample.pause();
-  //soundSample.resume();
+  soundSample.stop();
+  soundSample.pause();
+  soundSample.resume();
+  */
 
+  this.items = this.add.group([{
+    key: 'building',
+    setXY: {
+      x: 100,
+      y: 240
+      },
+    },
+    {
+      key: 'house',
+      setXY: {
+        x: 240,
+        y: 280
+        },
+      setScale: {
+        x: 0.8,
+        y: 0.8
+      }
+    },
+    {
+      key: 'car',
+      setXY: {
+        x: 400,
+        y: 300
+        },
+      setScale: {
+        x: 0.8,
+        y: 0.8
+      }
+    },
+    {
+      key: 'tree',
+      setXY: {
+        x: 550,
+        y: 250
+        },
+      setScale: {
+        x: 0.8,
+        y: 0.8
+      }
+    },
+  ]);
+
+  //Set positions of sprites
+  bg.depth = -1;
+  this.items.setDepth(1);
+  
 };
 
 // our game's configuration
