@@ -6,12 +6,18 @@ gameScene.init = function() {}
 
 // load asset files for our game
 gameScene.preload = function() {
-
+  // Load Images
+  this.load.image('background','assets/images/background-city.png');
+  this.load.image('building','assets/images/building.png');
+  this.load.image('car','assets/images/car.png');
+  this.load.image('house','assets/images/house.png');
+  this.load.image('tree','assets/images/tree.png');
 };
 
 // executed once, after assets were loaded
 gameScene.create = function() {
-
+  //Load Background
+  this.add.sprite(0,0,'background').setOrigin(0,0);
 
 };
 
