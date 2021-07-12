@@ -86,8 +86,18 @@ gameScene.create = function() {
     // Make item interactive
     item.setInteractive();
 
+    //Creating Tween - Resize
+    item.resizeTween = this.tweens.add({
+      targets: item,
+      scaleX: 1.5,
+      scaleY: 1.5,
+      duration: 300,
+      paused: true,
+      yoyo: true
+    });
+
     item.on('pointerdown', function(pointer){
-      console.log('You clicked '+ item.texture.key);
+      item.resizeTween.restart();
     })
   }, this);
 };
