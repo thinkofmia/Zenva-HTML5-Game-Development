@@ -98,7 +98,7 @@ gameScene.create = function() {
     item.setInteractive();
 
     //Creating Tween - Resize
-    item.resizeTween = this.tweens.add({
+    item.correctTween = this.tweens.add({
       targets: item,
       scaleX: 1.5,
       scaleY: 1.5,
@@ -106,6 +106,18 @@ gameScene.create = function() {
       paused: true,
       yoyo: true,
       ease: 'Quad.easeInOut'
+    });
+
+    //Creating Tween - Resize
+    item.wrongTween = this.tweens.add({
+      targets: item,
+      scaleX: 1.5,
+      scaleY: 1.5,
+      duration: 300,
+      paused: true,
+      yoyo: true,
+      ease: 'Quad.easeInOut',
+      angle: 90
     });
 
     //Transparency tween
@@ -117,10 +129,17 @@ gameScene.create = function() {
     });
 
     item.on('pointerdown', function(pointer){
-      item.resizeTween.restart();
+      //item.resizeTween.restart();
 
       let result = this.processAnswer(this.words[i].spanish);
 
+      //Play different tween based on answer
+      if (result){
+        item.correctTween.restart();
+      }
+      else {
+        item.wrongTween.restart();
+      }
       //Show next question
       this.showNextQuestion();
     }, this);
