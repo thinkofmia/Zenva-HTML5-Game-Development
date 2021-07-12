@@ -25,8 +25,18 @@ gameScene.preload = function() {
 
 // executed once, after assets were loaded
 gameScene.create = function() {
+
+  //Game BG
+  let bg = this.add.sprite(0,0,'backyard');
+  bg.setOrigin(0,0);
+
   this.pet = this.add.sprite(100,200,'pet',0);
 
+  //Buttons
+  this.appleBtn = this.add.sprite(72,570,'apple');
+  this.candyBtn = this.add.sprite(144,570,'candy');
+  this.toyBtn = this.add.sprite(216,570,'toy');
+  this.rotateBtn = this.add.sprite(288,570,'rotate');
 };
 
 // our game's configuration
