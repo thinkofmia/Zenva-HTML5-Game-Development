@@ -39,12 +39,17 @@ gameScene.create = function() {
 
   this.pet = this.add.sprite(100,200,'pet',0);
 
-  //Buttons
-  this.appleBtn = this.add.sprite(72,570,'apple');
-  this.candyBtn = this.add.sprite(144,570,'candy');
-  this.toyBtn = this.add.sprite(216,570,'toy');
-  this.rotateBtn = this.add.sprite(288,570,'rotate');
+  this.createUI();
 };
+
+//Create UI
+gameScene.createUI = function(){
+  //Buttons
+  this.appleBtn = this.add.sprite(72,570,'apple').setInteractive();
+  this.candyBtn = this.add.sprite(144,570,'candy').setInteractive();
+  this.toyBtn = this.add.sprite(216,570,'toy').setInteractive();
+  this.rotateBtn = this.add.sprite(288,570,'rotate').setInteractive();
+}
 
 // our game's configuration
 let config = {
