@@ -93,7 +93,8 @@ gameScene.create = function() {
       scaleY: 1.5,
       duration: 300,
       paused: true,
-      yoyo: true
+      yoyo: true,
+      ease: 'Quad.easeInOut'
     });
 
     //Transparency tween
