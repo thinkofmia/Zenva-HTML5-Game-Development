@@ -78,6 +78,9 @@ gameScene.create = function() {
   //Set positions of sprites
   bg.depth = -1;
   this.items.setDepth(1);
+
+  //Make Bg Interactive
+  bg.setInteractive();
   
 };
 
