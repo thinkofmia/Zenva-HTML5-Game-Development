@@ -2,38 +2,8 @@
 let gameScene = new Phaser.Scene('Game');
 
 // some parameters for our scene
-gameScene.init = function() {}
-
-// load asset files for our game
-gameScene.preload = function() {
-  // Load Images
-  this.load.image('background','assets/images/background-city.png');
-  this.load.image('building','assets/images/building.png');
-  this.load.image('car','assets/images/car.png');
-  this.load.image('house','assets/images/house.png');
-  this.load.image('tree','assets/images/tree.png');
-
-  this.load.audio('treeAudio','assets/audio/arbol.mp3');
-  this.load.audio('carAudio','assets/audio/auto.mp3');
-  this.load.audio('houseAudio','assets/audio/casa.mp3');
-  this.load.audio('buildingAudio','assets/audio/edificio.mp3');
-  this.load.audio('correct','assets/audio/correct.mp3');
-  this.load.audio('wrong','assets/audio/wrong.mp3');
-};
-
-// executed once, after assets were loaded
-gameScene.create = function() {
-  //Load Background
-  let bg = this.add.sprite(0,0,'background').setOrigin(0,0);
-
-  /*let soundSample = this.sound.add('correct');
-  soundSample.play();
-  soundSample.stop();
-  soundSample.pause();
-  soundSample.resume();
-  */
-
-  this.items = this.add.group([{
+gameScene.init = function() {
+  this.words = [{
     key: 'building',
     setXY: {
       x: 100,
@@ -77,7 +47,39 @@ gameScene.create = function() {
       },
       spanish: 'árbol'
     },
-  ]);
+  ];
+}
+
+// load asset files for our game
+gameScene.preload = function() {
+  // Load Images
+  this.load.image('background','assets/images/background-city.png');
+  this.load.image('building','assets/images/building.png');
+  this.load.image('car','assets/images/car.png');
+  this.load.image('house','assets/images/house.png');
+  this.load.image('tree','assets/images/tree.png');
+
+  this.load.audio('treeAudio','assets/audio/arbol.mp3');
+  this.load.audio('carAudio','assets/audio/auto.mp3');
+  this.load.audio('houseAudio','assets/audio/casa.mp3');
+  this.load.audio('buildingAudio','assets/audio/edificio.mp3');
+  this.load.audio('correct','assets/audio/correct.mp3');
+  this.load.audio('wrong','assets/audio/wrong.mp3');
+};
+
+// executed once, after assets were loaded
+gameScene.create = function() {
+  //Load Background
+  let bg = this.add.sprite(0,0,'background').setOrigin(0,0);
+
+  /*let soundSample = this.sound.add('correct');
+  soundSample.play();
+  soundSample.stop();
+  soundSample.pause();
+  soundSample.resume();
+  */
+
+  this.items = this.add.group(this.words);
 
   //Set positions of sprites
   bg.depth = -1;
@@ -85,8 +87,13 @@ gameScene.create = function() {
 
   //Make Bg Interactive
   bg.setInteractive();
+
+  //Getting Group array
+  let items = this.items.getChildren();
+
+  for (let i=0;i<items.length;i++){
+    let item = items[i];
   
-  Phaser.Actions.Call(this.items.getChildren(), function(item){
     // Make item interactive
     item.setInteractive();
 
@@ -127,14 +134,19 @@ gameScene.create = function() {
       item.alpha = 1;
     }, this);
 
-  }, this);
+  };
 
   this.showNextQuestion();
 };
 
 //Show new question
 gameScene.showNextQuestion = function(){
+  //Select a random word
+  //let nextWord = Phaser.Math.RND.pick(this.words);
 
+  //Play a sound for the word
+
+  //Show text of word
 }
 
 // our game's configuration
