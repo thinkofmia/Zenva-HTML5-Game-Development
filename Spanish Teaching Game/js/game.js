@@ -39,6 +39,7 @@ gameScene.create = function() {
       x: 100,
       y: 240
       },
+    spanish: 'edificio'
     },
     {
       key: 'house',
@@ -49,7 +50,8 @@ gameScene.create = function() {
       setScale: {
         x: 0.8,
         y: 0.8
-      }
+      },
+      spanish: 'casa'
     },
     {
       key: 'car',
@@ -60,7 +62,8 @@ gameScene.create = function() {
       setScale: {
         x: 0.8,
         y: 0.8
-      }
+      },
+      spanish: 'automóvil'
     },
     {
       key: 'tree',
@@ -71,7 +74,8 @@ gameScene.create = function() {
       setScale: {
         x: 0.8,
         y: 0.8
-      }
+      },
+      spanish: 'árbol'
     },
   ]);
 
@@ -107,21 +111,31 @@ gameScene.create = function() {
 
     item.on('pointerdown', function(pointer){
       item.resizeTween.restart();
-    });
+
+      //Show next question
+      this.showNextQuestion();
+    }, this);
 
     item.on('pointerover', function(pointer){
       item.alphaTween.restart();
-    });
+    }, this);
 
     item.on('pointerout', function(pointer){
       //Stop alpha tween
       item.alphaTween.stop();
       //Set no transparency
       item.alpha = 1;
-    });
+    }, this);
 
   }, this);
+
+  this.showNextQuestion();
 };
+
+//Show new question
+gameScene.showNextQuestion = function(){
+
+}
 
 // our game's configuration
 let config = {
