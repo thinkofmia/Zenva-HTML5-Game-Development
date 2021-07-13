@@ -34,8 +34,11 @@ gameScene.preload = function() {
 gameScene.create = function() {
 
   //Game BG
-  let bg = this.add.sprite(0,0,'backyard');
+  let bg = this.add.sprite(0,0,'backyard').setInteractive();
   bg.setOrigin(0,0);
+
+  //Event listener for the bg
+  bg.on('pointerdown', this.placeItem, this);
 
   this.pet = this.add.sprite(100,200,'pet',0).setInteractive();
 
@@ -78,6 +81,18 @@ gameScene.createUI = function(){
 
   //Refresh UI
   this.uiReady();
+};
+
+//Place new items on game
+gameScene.placeItem = function(pointer, localX, localY){
+  //console.log(pointer);
+  //console.log(localX, localY);
+
+  //Check item selected
+  if (!this.selectedItem) return;
+
+  // Create new item in position
+  let newItem = this.add.sprite(localX, localY, this.selectedItem.texture.key);
 };
 
 //Rotate Pet
