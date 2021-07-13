@@ -95,9 +95,15 @@ gameScene.placeItem = function(pointer, localX, localY){
   let newItem = this.add.sprite(localX, localY, this.selectedItem.texture.key);
 
   //Pet stats
-  this.stats.health += this.selectedItem.customStats.health;
-  this.stats.fun += this.selectedItem.customStats.fun;
+  //this.stats.health += this.selectedItem.customStats.health;
+  //this.stats.fun += this.selectedItem.customStats.fun;
   
+  for (stat in this.selectedItem.customStats){
+    if (this.selectedItem.customStats.hasOwnProperty(stat)){
+      this.stats[stat] += this.selectedItem.customStats[stat];
+    }
+  };
+
   console.log(this.stats);
 
   //Clear UI
