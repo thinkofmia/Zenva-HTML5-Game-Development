@@ -94,6 +94,12 @@ gameScene.placeItem = function(pointer, localX, localY){
   // Create new item in position
   let newItem = this.add.sprite(localX, localY, this.selectedItem.texture.key);
 
+  //Pet stats
+  this.stats.health += this.selectedItem.customStats.health;
+  this.stats.fun += this.selectedItem.customStats.fun;
+  
+  console.log(this.stats);
+
   //Clear UI
   this.uiReady();
 };
