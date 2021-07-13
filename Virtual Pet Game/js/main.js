@@ -87,6 +87,19 @@ gameScene.rotatePet = function(){
   //Make sure UI is ready
   this.scene.uiReady();
   
+  //Block UI
+  this.scene.uiBlocked = true;
+
+  //Rotate
+  this.alpha = 0.5;
+
+  let scene = this.scene;
+
+  setTimeout(function(){
+    //Set scene to ready
+    scene.uiReady();
+  }, 2000);
+
   console.log('Rotating pet');
 };
 
@@ -116,6 +129,9 @@ gameScene.uiReady = function(){
   for (let i=0; i<this.buttons.length; i++){
     this.buttons[i].alpha = 1;
   }
+
+  //Unblock scene
+  this.uiBlocked = false;
 }
 
 // our game's configuration
