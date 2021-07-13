@@ -93,6 +93,9 @@ gameScene.placeItem = function(pointer, localX, localY){
 
   // Create new item in position
   let newItem = this.add.sprite(localX, localY, this.selectedItem.texture.key);
+
+  //Clear UI
+  this.uiReady();
 };
 
 //Rotate Pet
