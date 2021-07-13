@@ -69,18 +69,54 @@ gameScene.createUI = function(){
 
   this.rotateBtn = this.add.sprite(288,570,'rotate').setInteractive();
   this.rotateBtn.on('pointerdown', this.rotatePet);
+
+  //Array with all buttons
+  this.buttons = [this.appleBtn, this.candyBtn, this.toyBtn, this.rotateBtn];
+
+  //UI not blocked
+  this.uiBlocked = false;
+
+  //Refresh UI
+  this.uiReady();
 };
 
 //Rotate Pet
 gameScene.rotatePet = function(){
+  if (this.scene.uiBlocked) return;
+  
+  //Make sure UI is ready
+  this.scene.uiReady();
+  
   console.log('Rotating pet');
 };
 
 //Pick item
 gameScene.pickItem = function(){
-  console.log(this.customStats);
+  //console.log(this.customStats);
+  if (this.scene.uiBlocked) return;
+  
+  //Make sure UI is ready
+  this.scene.uiReady();
+
+  //Select Item
+  this.scene.selectedItem = this;
+
+  //Change transparency
+  this.alpha = 0.5;
+
   console.log('Picking ' + this.texture.key);
 };
+
+//Set UI to ready
+gameScene.uiReady = function(){
+  //Nothing selected
+  this.selectedItem = null;
+
+  //Reset transparency
+  for (let i=0; i<this.buttons.length; i++){
+    this.buttons[i].alpha = 1;
+  }
+}
 
 // our game's configuration
 let config = {
