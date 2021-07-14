@@ -100,19 +100,19 @@ gameScene.update = function(){
     this.player.flipX = false;
 
     //Check
-    if (!this.player.anims.isPlaying) this.player.anims.play('walking');
+    if (onGround && !this.player.anims.isPlaying) this.player.anims.play('walking');
   }
   else if (this.cursors.right.isDown){
     this.player.body.setVelocityX(this.playerSpeed);
     this.player.flipX = true;
-    if (!this.player.anims.isPlaying) this.player.anims.play('walking');
+    if (onGround && !this.player.anims.isPlaying) this.player.anims.play('walking');
   }
   else {
     this.player.body.setVelocityX(0);
     this.player.anims.stop('walking');
 
     //Set default frame
-    this.player.setFrame(3);
+    if (onGround) this.player.setFrame(3);
   }
 
   //Jumping
