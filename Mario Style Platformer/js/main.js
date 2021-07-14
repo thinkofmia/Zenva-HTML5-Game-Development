@@ -40,6 +40,7 @@ gameScene.create = function() {
   this.physics.add.existing(ground, true);
 
   let platform = this.add.tileSprite(180, 500, 4 * 36, 1 * 30, 'block');
+  this.physics.add.existing(platform, true);
 
   //Disable Gravity
   //ground.body.allowGravity = false;
