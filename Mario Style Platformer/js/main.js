@@ -37,13 +37,13 @@ gameScene.create = function() {
   let ground = this.add.sprite(180, 400, 'ground');
 
   //Add sprite to physics system
-  this.physics.add.existing(ground);
+  this.physics.add.existing(ground, true);
 
   //Disable Gravity
-  ground.body.allowGravity = false;
+  //ground.body.allowGravity = false;
 
   //Immovable
-  ground.body.immovable = true;
+  //ground.body.immovable = true;
 
   //Create and add sprites to physics
   let ground2 = this.physics.add.sprite(180, 200, 'ground');
