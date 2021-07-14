@@ -31,7 +31,14 @@ gameScene.preload = function() {
 };
 
 // executed once, after assets were loaded
-gameScene.create = function() {};
+gameScene.create = function() {
+
+  //Sprite Creation
+  let ground = this.add.sprite(180, 400, 'ground');
+
+  //Add sprite to physics system
+  this.physics.add.existing(ground);
+};
 
 // our game's configuration
 let config = {
