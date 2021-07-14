@@ -34,10 +34,12 @@ gameScene.preload = function() {
 gameScene.create = function() {
 
   //Sprite Creation
-  let ground = this.add.sprite(180, 400, 'ground');
+  let ground = this.add.sprite(180, 604, 'ground');
 
   //Add sprite to physics system
   this.physics.add.existing(ground, true);
+
+  let platform = this.add.tileSprite(180, 500, 4 * 36, 1 * 30, 'block');
 
   //Disable Gravity
   //ground.body.allowGravity = false;
@@ -46,12 +48,12 @@ gameScene.create = function() {
   //ground.body.immovable = true;
 
   //Create and add sprites to physics
-  let ground2 = this.physics.add.sprite(180, 200, 'ground');
+  //let ground2 = this.physics.add.sprite(180, 200, 'ground');
 
   //
 
   //Collision Detection
-  this.physics.add.collider(ground, ground2);
+  //this.physics.add.collider(ground, ground2);
 };
 
 // our game's configuration
