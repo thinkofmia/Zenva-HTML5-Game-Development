@@ -50,12 +50,12 @@ gameScene.create = function() {
   this.platforms.add(ground);
 
   //Platform
-  let platform = this.add.tileSprite(180, 500, 4 * 36, 1 * 30, 'block');
+  let platform = this.add.tileSprite(176, 384, 4 * 36, 1 * 30, 'block');
   this.physics.add.existing(platform, true);
   this.platforms.add(platform);
 
   //Player
-  this.player = this.add.sprite(180, 400, 'player');
+  this.player = this.add.sprite(175, 280, 'player');
   this.physics.add.existing(this.player);
 
   //Constraint player
