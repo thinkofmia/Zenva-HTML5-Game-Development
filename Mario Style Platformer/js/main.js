@@ -91,6 +91,10 @@ gameScene.create = function() {
 
 //Executed on every frame
 gameScene.update = function(){
+
+  //Check on ground
+  let onGround = this.player.body.blocked.down || this.player.body.touching.down;
+
   if (this.cursors.left.isDown){
     this.player.body.setVelocityX(-this.playerSpeed);
     this.player.flipX = false;
@@ -112,13 +116,13 @@ gameScene.update = function(){
   }
 
   //Jumping
-  if (this.cursors.space.isDown || this.cursors.up.isDown){
+  if (onGround && (this.cursors.space.isDown || this.cursors.up.isDown)){
     //Give player velocity Y
     this.player.body.setVelocityY(this.jumpSpeed);
 
     //Stop walking animation
     this.player.anims.stop('walking');
-    
+
     //Change frame
     this.player.setFrame(2);
   }
