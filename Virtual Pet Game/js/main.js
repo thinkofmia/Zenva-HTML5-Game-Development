@@ -92,23 +92,47 @@ gameScene.placeItem = function(pointer, localX, localY){
   //Check item selected
   if (!this.selectedItem) return;
 
+  //UI must be unblocked
+  if (this.uiBlocked) return;
+
   // Create new item in position
   let newItem = this.add.sprite(localX, localY, this.selectedItem.texture.key);
 
-  //Pet stats
-  //this.stats.health += this.selectedItem.customStats.health;
-  //this.stats.fun += this.selectedItem.customStats.fun;
-  
-  for (stat in this.selectedItem.customStats){
-    if (this.selectedItem.customStats.hasOwnProperty(stat)){
-      this.stats[stat] += this.selectedItem.customStats[stat];
-    }
-  };
-
-  console.log(this.stats);
-
   //Clear UI
-  this.uiReady();
+  //this.uiReady();
+
+  //Block UI
+  this.uiBlocked = true;
+
+  //Pet movement
+  let petTween = this.tweens.add({
+    targets: this.pet,
+    duration: 500,
+    x: newItem.x,
+    y: newItem.y,
+    paused: false,
+    callbackScope: this,
+    onComplete: function(tween, sprites){
+      //Pet stats
+      //this.stats.health += this.selectedItem.customStats.health;
+      //this.stats.fun += this.selectedItem.customStats.fun;
+      
+      for (stat in this.selectedItem.customStats){
+        if (this.selectedItem.customStats.hasOwnProperty(stat)){
+          this.stats[stat] += this.selectedItem.customStats[stat];
+        }
+      };
+
+      //Clear UI
+      this.uiReady();
+      
+      console.log(this.stats);
+      }
+  });
+
+  
+
+  
 };
 
 //Rotate Pet
