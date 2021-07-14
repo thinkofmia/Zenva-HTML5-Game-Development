@@ -46,10 +46,20 @@ gameScene.create = function() {
   this.physics.add.existing(platform, true);
   this.platforms.add(platform);
 
-
   //Player
   this.player = this.add.sprite(180, 400, 'player');
   this.physics.add.existing(this.player);
+
+  //Walking ANimation
+  this.anims.create({
+    key: 'walking',
+    frames: this.anims.generateFrameNames('player', {
+      frames: [0,1,2]
+    }),
+    frameRate: 12,
+    yoyo: true,
+    repeat: -1
+  });
 
   //Disable Gravity
   //ground.body.allowGravity = false;
@@ -72,12 +82,20 @@ gameScene.create = function() {
 gameScene.update = function(){
   if (this.cursors.left.isDown){
     this.player.body.setVelocityX(-100);
+
+    //Check
+    this.player.anims.play('walking');
   }
   else if (this.cursors.right.isDown){
     this.player.body.setVelocityX(100);
+    this.player.anims.play('walking');
   }
   else {
     this.player.body.setVelocityX(0);
+    this.player.anims.stop('walking')
+
+    //Set default frame
+    this.player.setFrame(3);
   }
 };
 
