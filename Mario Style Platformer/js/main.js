@@ -45,13 +45,6 @@ gameScene.create = function() {
   this.physics.world.bounds.width = 360;
   this.physics.world.bounds.height = 700;
 
-  //Player
-  this.player = this.add.sprite(175, 280, 'player');
-  this.physics.add.existing(this.player);
-
-  //Constraint player
-  this.player.body.setCollideWorldBounds(true);
-
   //Walking ANimation
   this.anims.create({
     key: 'walking',
@@ -86,6 +79,7 @@ gameScene.create = function() {
 
   //Collision Detection
   this.physics.add.collider(this.player, this.platforms);
+  this.physics.add.collider(this.goal, this.platforms);
 
   //Enable cursor keys
   this.cursors = this.input.keyboard.createCursorKeys();
@@ -194,8 +188,20 @@ gameScene.setupLevel = function(){
         gameObject.y = dragY;
 
         console.log(dragX, dragY);
-      })
+      });
     }
+
+    
+    //Player
+    this.player = this.add.sprite(this.levelData.player.x, this.levelData.player.y, 'player');
+    this.physics.add.existing(this.player);
+
+    //Constraint player
+    this.player.body.setCollideWorldBounds(true);
+
+    //Goal
+    this.goal = this.add.sprite(this.levelData.goal.x,this.levelData.goal.y, 'goal');
+    this.physics.add.existing(this.goal);
 }
 
 // our game's configuration
