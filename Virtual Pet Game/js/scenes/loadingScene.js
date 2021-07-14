@@ -2,6 +2,9 @@
 let loadingScene = new Phaser.Scene('Loading');
 
 loadingScene.preload = function(){
+    //Show Logo
+    let logo = this.add.sprite(this.sys.game.config.width/2, 250, 'logo');
+
     // load assets
     this.load.image('backyard', 'assets/images/backyard.png');
     this.load.image('apple', 'assets/images/apple.png');
@@ -29,5 +32,5 @@ loadingScene.create = function(){
         repeat: 0 //Repeat forever is -1
     });
 
-    this.scene.start('Home');
+    //this.scene.start('Home');
 }
