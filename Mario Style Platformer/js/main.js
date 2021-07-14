@@ -128,12 +128,12 @@ gameScene.update = function(){
 
 //Set up elements in level
 gameScene.setupLevel = function(){
-  this.platforms = this.add.group();
 
   //Load Json data
   this.levelData = this.cache.json.get('levelData');
 
   //Create all platforms
+  this.platforms = this.add.group();
   for (let i=0;i<this.levelData.platforms.length;i++){
     let curr = this.levelData.platforms[i];
 
@@ -157,6 +157,22 @@ gameScene.setupLevel = function(){
     //Add to group
     this.platforms.add(newObj);
   }
+
+    //Create all fires
+    this.fires = this.add.group();
+    for (let i=0;i<this.levelData.fires.length;i++){
+      let curr = this.levelData.fires[i];
+  
+      let newObj = this.add.sprite(curr.x, curr.y, 'fire').setOrigin(0,0);
+
+  
+      //Enable Physics
+      this.physics.add.existing(newObj, true);
+      newObj.body.immovable = false;
+  
+      //Add to group
+      this.platforms.add(newObj);
+    }
 }
 
 // our game's configuration
