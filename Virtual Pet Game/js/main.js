@@ -127,6 +127,13 @@ gameScene.placeItem = function(pointer, localX, localY){
       //Destroy Item
       newItem.destroy();
 
+      //Event listener when animation ends
+      this.pet.on('animationcomplete', function(){
+
+        //Clear UI
+        this.uiReady();
+      }, this);
+
       //Play spreadsheet animation
       this.pet.play('funnyfaces');
 
@@ -140,9 +147,6 @@ gameScene.placeItem = function(pointer, localX, localY){
         }
       };
 
-      //Clear UI
-      this.uiReady();
-      
       console.log(this.stats);
       }
   });
