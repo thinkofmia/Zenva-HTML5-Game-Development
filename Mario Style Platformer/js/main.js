@@ -68,14 +68,6 @@ gameScene.create = function() {
 
   //Add all level elements
   this.setupLevel();
-
-  //World bounds
-  this.physics.world.bounds.width = 360;
-  this.physics.world.bounds.height = 700;
-
-  //Camera bounds
-  this.cameras.main.setBounds(0, 0, 360, 700);
-  this.cameras.main.startFollow(this.player);
   
     //Disable Gravity
   //ground.body.allowGravity = false;
@@ -145,6 +137,10 @@ gameScene.setupLevel = function(){
 
   //Load Json data
   this.levelData = this.cache.json.get('levelData');
+  
+  //World bounds
+  this.physics.world.bounds.width = this.levelData.world.width;
+  this.physics.world.bounds.height = this.levelData.world.height;
 
   //Create all platforms
   this.platforms = this.physics.add.staticGroup();
@@ -208,6 +204,10 @@ gameScene.setupLevel = function(){
 
     //Constraint player
     this.player.body.setCollideWorldBounds(true);
+      
+    //Camera bounds
+    this.cameras.main.setBounds(0, 0, this.levelData.world.width, this.levelData.world.height);
+    this.cameras.main.startFollow(this.player);
 
     //Goal
     this.goal = this.add.sprite(this.levelData.goal.x,this.levelData.goal.y, 'goal');
