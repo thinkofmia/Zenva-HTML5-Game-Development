@@ -45,6 +45,15 @@ gameScene.create = function() {
   //Make pet draggable
   this.input.setDraggable(this.pet);
 
+  //Animation
+  this.anims.create({
+    key: 'funnyfaces',
+    frames: this.anims.generateFrameNames('pet', {frames: [1,2,3]}),
+    frameRate: 7,
+    yoyo: true,
+    repeat: 0 //Repeat forever is -1
+  });
+
   //Follow pointer when dragging
   this.input.on('drag', function(pointer, gameObject, dragX, dragY){
     //Make sprite located at dragging
@@ -113,6 +122,10 @@ gameScene.placeItem = function(pointer, localX, localY){
     paused: false,
     callbackScope: this,
     onComplete: function(tween, sprites){
+
+      //Play spreadsheet animation
+      this.pet.play('funnyfaces');
+
       //Pet stats
       //this.stats.health += this.selectedItem.customStats.health;
       //this.stats.fun += this.selectedItem.customStats.fun;
