@@ -2,7 +2,12 @@
 let gameScene = new Phaser.Scene('Game');
 
 // some parameters for our scene
-gameScene.init = function() {};
+gameScene.init = function() {
+
+  //Player parameters
+  this.playerSpeed = 150;
+  this.jumpSpeed = -600;
+};
 
 // load asset files for our game
 gameScene.preload = function() {
@@ -81,14 +86,14 @@ gameScene.create = function() {
 //Executed on every frame
 gameScene.update = function(){
   if (this.cursors.left.isDown){
-    this.player.body.setVelocityX(-100);
+    this.player.body.setVelocityX(-this.playerSpeed);
     this.player.flipX = false;
 
     //Check
     if (!this.player.anims.isPlaying) this.player.anims.play('walking');
   }
   else if (this.cursors.right.isDown){
-    this.player.body.setVelocityX(100);
+    this.player.body.setVelocityX(this.playerSpeed);
     this.player.flipX = true;
     if (!this.player.anims.isPlaying) this.player.anims.play('walking');
   }
