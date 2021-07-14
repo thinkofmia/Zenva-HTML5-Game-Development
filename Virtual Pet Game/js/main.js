@@ -303,7 +303,13 @@ gameScene.updateStats = function(statDiff){
 };
 
 gameScene.gameOver = function(){
-  console.log('Gameover');
+  //Block UI
+  this.uiBlocked = true;
+
+  //Change frame of pet
+  this.pet.setFrame(4);
+
+  
 };
 
 // our game's configuration
