@@ -39,10 +39,19 @@ gameScene.create = function() {
   //Add sprite to physics system
   this.physics.add.existing(ground);
 
+  //Disable Gravity
+  ground.body.allowGravity = false;
+
+  //Immovable
+  ground.body.immovable = true;
+
   //Create and add sprites to physics
   let ground2 = this.physics.add.sprite(180, 200, 'ground');
 
-  
+  //
+
+  //Collision Detection
+  this.physics.add.collider(ground, ground2);
 };
 
 // our game's configuration
