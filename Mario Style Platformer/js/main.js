@@ -82,13 +82,15 @@ gameScene.create = function() {
 gameScene.update = function(){
   if (this.cursors.left.isDown){
     this.player.body.setVelocityX(-100);
+    this.player.flipX = false;
 
     //Check
-    this.player.anims.play('walking');
+    if (!this.player.anims.isPlaying) this.player.anims.play('walking');
   }
   else if (this.cursors.right.isDown){
     this.player.body.setVelocityX(100);
-    this.player.anims.play('walking');
+    this.player.flipX = true;
+    if (!this.player.anims.isPlaying) this.player.anims.play('walking');
   }
   else {
     this.player.body.setVelocityX(0);
