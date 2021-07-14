@@ -183,6 +183,18 @@ gameScene.setupLevel = function(){
 
       //Add to group
       this.platforms.add(newObj);
+
+      newObj.setInteractive();
+      //This is for level creation
+      this.input.setDraggable(newObj);
+
+      //Level creation
+      this.input.on('drag', function(pointer, gameObject, dragX, dragY){
+        gameObject.x = dragX;
+        gameObject.y = dragY;
+
+        console.log(dragX, dragY);
+      })
     }
 }
 
