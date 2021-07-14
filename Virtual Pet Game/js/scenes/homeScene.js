@@ -21,7 +21,7 @@ homeScene.create = function(){
     //Text background
     let textBg = this.add.graphics();
     textBg.fillStyle(0x000000, 0.7);
-    textBg.fillRect(gameW/2 - text.width/2, gameH/2 - text.height/2, text.width, text.height);
+    textBg.fillRect(gameW/2 - text.width/2 - 10, gameH/2 - text.height/2 -10, text.width+20, text.height+ 20);
 
     bg.on('pointerdown', function(){
         this.scene.start('Game');
