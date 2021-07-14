@@ -66,6 +66,7 @@ gameScene.create = function() {
 
   //Show stats to user
   this.createHud();
+  this.refreshHud();
 };
 
 //Create UI
@@ -138,6 +139,10 @@ gameScene.placeItem = function(pointer, localX, localY){
 
         //Clear UI
         this.uiReady();
+
+        //Refresh HUD
+        this.refreshHud();
+
       }, this);
 
       //Play spreadsheet animation
@@ -197,7 +202,8 @@ gameScene.rotatePet = function(){
       // Set UI to ready
       this.scene.uiReady();
 
-      console.log(this.scene.stats);
+      //Refresh HUD
+      this.scene.refreshHud();
     }
   });
 
@@ -244,11 +250,17 @@ gameScene.createHud = function(){
   });
 
   //Fun stat
-  this.funText = this.add.text(150,20,'Fun: ',{
+  this.funText = this.add.text(170,20,'Fun: ',{
     font: '24px Arial',
     fill: '#ffffff'
   });
 
+}
+
+//Show current value of Health and fun
+gameScene.refreshHud = function(){
+  this.healthText.setText('Health: '+ this.stats.health);
+  this.funText.setText('Fun: '+this.stats.fun);
 }
 
 // our game's configuration
