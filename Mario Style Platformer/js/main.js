@@ -45,9 +45,6 @@ gameScene.create = function() {
   this.physics.world.bounds.width = 360;
   this.physics.world.bounds.height = 700;
 
-  //Add all level elements
-  this.setupLevel();
-
   //Player
   this.player = this.add.sprite(175, 280, 'player');
   this.physics.add.existing(this.player);
@@ -66,6 +63,18 @@ gameScene.create = function() {
     repeat: -1
   });
 
+    //Fire ANimation
+    this.anims.create({
+      key: 'burning',
+      frames: this.anims.generateFrameNames('fire', {
+        frames: [0,1]
+      }),
+      frameRate: 4,
+      repeat: -1
+    });
+
+    //Add all level elements
+    this.setupLevel();
   //Disable Gravity
   //ground.body.allowGravity = false;
 
@@ -165,11 +174,13 @@ gameScene.setupLevel = function(){
   
       let newObj = this.add.sprite(curr.x, curr.y, 'fire').setOrigin(0,0);
 
-  
       //Enable Physics
       this.physics.add.existing(newObj, true);
       newObj.body.immovable = false;
-  
+
+      //Play animation
+      newObj.anims.play('burning');
+
       //Add to group
       this.platforms.add(newObj);
     }
