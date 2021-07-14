@@ -68,6 +68,9 @@ gameScene.create = function() {
 
   //Add all level elements
   this.setupLevel();
+
+  //Initiate Spawner
+  this.setUpSpawner();
   
     //Disable Gravity
   //ground.body.allowGravity = false;
@@ -224,6 +227,30 @@ gameScene.restartGame = function(sourceSprite, targetSprite){
     //Restart Scene
     this.scene.restart();
   }, this);
+}
+
+//Generation of barrels
+gameScene.setUpSpawner = function(){
+  //Barrel Group
+  this.barrels = this.physics.add.group({
+    bounceY: 0.1,
+    bounceX: 1,
+    collideWorldBounds: true
+  });
+
+  //Spawn Barrels
+  let spawningEvent = this.time.addEvent({
+    delay: this.levelData.spawner.interval,
+    loop: true,
+    callbackScope: this,
+    callback: function(){
+      //Create barrel
+      let barrel = this.barrels.create(this.goal.x, this.goal.y, 'barrel');
+      //Set Property
+
+      //Duration
+    }
+  });
 }
 
 // our game's configuration
