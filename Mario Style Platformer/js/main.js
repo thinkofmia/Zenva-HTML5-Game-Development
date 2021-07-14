@@ -60,10 +60,25 @@ gameScene.create = function() {
   //Create and add sprites to physics
   //let ground2 = this.physics.add.sprite(180, 200, 'ground');
 
-  //
-
   //Collision Detection
   this.physics.add.collider(this.player, this.platforms);
+
+  //Enable cursor keys
+  this.cursors = this.input.keyboard.createCursorKeys();
+
+};
+
+//Executed on every frame
+gameScene.update = function(){
+  if (this.cursors.left.isDown){
+    this.player.body.setVelocityX(-100);
+  }
+  else if (this.cursors.right.isDown){
+    this.player.body.setVelocityX(100);
+  }
+  else {
+    this.player.body.setVelocityX(0);
+  }
 };
 
 // our game's configuration
