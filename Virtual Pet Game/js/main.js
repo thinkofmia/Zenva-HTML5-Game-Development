@@ -123,6 +123,9 @@ gameScene.placeItem = function(pointer, localX, localY){
     callbackScope: this,
     onComplete: function(tween, sprites){
 
+      //Destroy Item
+      newItem.destroy();
+
       //Play spreadsheet animation
       this.pet.play('funnyfaces');
 
