@@ -9,6 +9,9 @@ gameScene.init = function() {
     fun: 100
   }
 
+  //Decay parameters
+  this.healthDecay = 5;
+  this.funDecay = 5;
 };
 
 // load asset files for our game
@@ -67,6 +70,14 @@ gameScene.create = function() {
   //Show stats to user
   this.createHud();
   this.refreshHud();
+
+  //Decay of health and fun over time
+  this.timedEventStats = this.time.addEvent({
+    delay: 1000,
+    repeat: -1, //Repeat forever
+    callback: function(){console.log('Stats Decreasing');},
+    callbackScope: this
+  });
 };
 
 //Create UI
