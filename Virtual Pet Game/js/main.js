@@ -41,6 +41,7 @@ gameScene.create = function() {
   bg.on('pointerdown', this.placeItem, this);
 
   this.pet = this.add.sprite(100,200,'pet',0).setInteractive();
+  this.pet.depth = 1;
 
   //Make pet draggable
   this.input.setDraggable(this.pet);
