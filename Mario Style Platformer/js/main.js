@@ -41,21 +41,24 @@ gameScene.preload = function() {
 // executed once, after assets were loaded
 gameScene.create = function() {
 
+  if(!this.anims.get('walking')){
+    //Walking ANimation
+    this.anims.create({
+      key: 'walking',
+      frames: this.anims.generateFrameNames('player', {
+        frames: [0,1,2]
+      }),
+      frameRate: 12,
+      yoyo: true,
+      repeat: -1
+    });
+  }
   //World bounds
   this.physics.world.bounds.width = 360;
   this.physics.world.bounds.height = 700;
 
-  //Walking ANimation
-  this.anims.create({
-    key: 'walking',
-    frames: this.anims.generateFrameNames('player', {
-      frames: [0,1,2]
-    }),
-    frameRate: 12,
-    yoyo: true,
-    repeat: -1
-  });
-
+  
+  if(!this.anims.get('burning')){
     //Fire ANimation
     this.anims.create({
       key: 'burning',
@@ -65,6 +68,7 @@ gameScene.create = function() {
       frameRate: 4,
       repeat: -1
     });
+  }
 
     //Add all level elements
     this.setupLevel();
@@ -78,8 +82,10 @@ gameScene.create = function() {
   //let ground2 = this.physics.add.sprite(180, 200, 'ground');
 
   //Collision Detection
-  this.physics.add.collider(this.player, this.platforms);
-  this.physics.add.collider(this.goal, this.platforms);
+  this.physics.add.collider([this.player, this.goal], this.platforms);
+
+  //Overlaps
+  this.physics.add.overlap(this.player, [this.goal,this.fires], this.restartGame, null, this);
 
   //Enable cursor keys
   this.cursors = this.input.keyboard.createCursorKeys();
@@ -164,25 +170,23 @@ gameScene.setupLevel = function(){
     //Create all fires
     this.fires = this.physics.add.group({
       allowGravity: false,
-      immovable: true,
+      immovable: true
     });
-    for (let i=0;i<this.levelData.fires.length;i++){
+    for (let i = 0; i < this.levelData.fires.length; i++) {
       let curr = this.levelData.fires[i];
   
-      let newObj = this.add.sprite(curr.x, curr.y, 'fire').setOrigin(0,0);
-      //let newObj = this.fires.create(curr.x, curr.y, 'fire').setOrigin(0,0).setOffset(-10,-10);
-
-
-      //Play animation
+      let newObj = this.add.sprite(curr.x, curr.y, 'fire').setOrigin(0);
+  
+      // play burning animation
       newObj.anims.play('burning');
+  
+      // add to the group
+      this.fires.add(newObj);  
 
-      //Add to group
-      this.platforms.add(newObj);
-
-      newObj.setInteractive();
+      //newObj.setInteractive();
       //This is for level creation
-      this.input.setDraggable(newObj);
-
+      //this.input.setDraggable(newObj);
+/*
       //Level creation
       this.input.on('drag', function(pointer, gameObject, dragX, dragY){
         gameObject.x = dragX;
@@ -190,8 +194,8 @@ gameScene.setupLevel = function(){
 
         console.log(dragX, dragY);
       });
+      */
     }
-
     
     //Player
     this.player = this.add.sprite(this.levelData.player.x, this.levelData.player.y, 'player');
@@ -203,6 +207,18 @@ gameScene.setupLevel = function(){
     //Goal
     this.goal = this.add.sprite(this.levelData.goal.x,this.levelData.goal.y, 'goal');
     this.physics.add.existing(this.goal);
+}
+
+//Restart Game
+gameScene.restartGame = function(sourceSprite, targetSprite){
+  //Fade Out
+  this.cameras.main.fade(500);
+
+  //When fade complete
+  this.cameras.main.on('camerafadeoutcomplete',function(){
+    //Restart Scene
+    this.scene.restart();
+  }, this);
 }
 
 // our game's configuration
