@@ -130,6 +130,9 @@ gameScene.placeItem = function(pointer, localX, localY){
       //Event listener when animation ends
       this.pet.on('animationcomplete', function(){
 
+        //Set pet back to neutral
+        this.pet.setFrame(0);
+
         //Clear UI
         this.uiReady();
       }, this);
