@@ -33,14 +33,23 @@ gameScene.preload = function() {
 // executed once, after assets were loaded
 gameScene.create = function() {
 
-  //Sprite Creation
+
+  this.platforms = this.add.group();
+
+  //Ground
   let ground = this.add.sprite(180, 604, 'ground');
-
-  //Add sprite to physics system
   this.physics.add.existing(ground, true);
+  this.platforms.add(ground);
 
+  //Platform
   let platform = this.add.tileSprite(180, 500, 4 * 36, 1 * 30, 'block');
   this.physics.add.existing(platform, true);
+  this.platforms.add(platform);
+
+
+  //Player
+  this.player = this.add.sprite(180, 400, 'player');
+  this.physics.add.existing(this.player);
 
   //Disable Gravity
   //ground.body.allowGravity = false;
@@ -54,7 +63,7 @@ gameScene.create = function() {
   //
 
   //Collision Detection
-  //this.physics.add.collider(ground, ground2);
+  this.physics.add.collider(this.player, this.platforms);
 };
 
 // our game's configuration
