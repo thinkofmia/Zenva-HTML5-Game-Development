@@ -105,10 +105,22 @@ gameScene.update = function(){
   }
   else {
     this.player.body.setVelocityX(0);
-    this.player.anims.stop('walking')
+    this.player.anims.stop('walking');
 
     //Set default frame
     this.player.setFrame(3);
+  }
+
+  //Jumping
+  if (this.cursors.space.isDown || this.cursors.up.isDown){
+    //Give player velocity Y
+    this.player.body.setVelocityY(this.jumpSpeed);
+
+    //Stop walking animation
+    this.player.anims.stop('walking');
+    
+    //Change frame
+    this.player.setFrame(2);
   }
 };
 
