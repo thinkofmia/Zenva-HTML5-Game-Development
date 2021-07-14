@@ -63,6 +63,9 @@ gameScene.create = function() {
   });
 
   this.createUI();
+
+  //Show stats to user
+  this.createHud();
 };
 
 //Create UI
@@ -230,6 +233,22 @@ gameScene.uiReady = function(){
 
   //Unblock scene
   this.uiBlocked = false;
+}
+
+//Show stats
+gameScene.createHud = function(){
+  //Health Stat
+  this.healthText = this.add.text(20,20,'Health: ',{
+    font: '26px Arial',
+    fill: '#ffffff'
+  });
+
+  //Fun stat
+  this.funText = this.add.text(150,20,'Fun: ',{
+    font: '24px Arial',
+    fill: '#ffffff'
+  });
+
 }
 
 // our game's configuration
