@@ -77,17 +77,8 @@ gameScene.create = function() {
   this.physics.world.bounds.width = 360;
   this.physics.world.bounds.height = 700;
 
-  this.platforms = this.add.group();
-
-  //Ground
-  let ground = this.add.sprite(180, 604, 'ground');
-  this.physics.add.existing(ground, true);
-  this.platforms.add(ground);
-
-  //Platform
-  let platform = this.add.tileSprite(176, 384, 4 * 36, 1 * 30, 'block');
-  this.physics.add.existing(platform, true);
-  this.platforms.add(platform);
+  //Add all level elements
+  this.setupLevel();
 
   //Player
   this.player = this.add.sprite(175, 280, 'player');
@@ -166,6 +157,36 @@ gameScene.update = function(){
     this.player.setFrame(2);
   }
 };
+
+//Set up elements in level
+gameScene.setupLevel = function(){
+  this.platforms = this.add.group();
+
+  //Create all platforms
+  for (let i=0;i<this.levelData.platforms.length;i++){
+    let curr = this.levelData.platforms[i];
+
+    let newObj;
+
+    //Create Object
+    if (curr.numTiles == 1){
+      //Create sprite
+      newObj = this.add.sprite(curr.x, curr.y, curr.key).setOrigin(0,0);
+    }
+    else {
+      //Create tilesprite
+      let width = this.textures.get(curr.key).get(0).width;
+      let height = this.textures.get(curr.key).get(0).height;
+      newObj = this.add.tileSprite(curr.x, curr.y, curr.numTiles * width, height, curr.key).setOrigin(0);
+    }
+
+    //Enable Physics
+    this.physics.add.existing(newObj, true);
+
+    //Add to group
+    this.platforms.add(newObj);
+  }
+}
 
 // our game's configuration
 let config = {
