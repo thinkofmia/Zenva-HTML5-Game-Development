@@ -136,7 +136,7 @@ gameScene.setupLevel = function(){
   this.levelData = this.cache.json.get('levelData');
 
   //Create all platforms
-  this.platforms = this.add.group();
+  this.platforms = this.physics.add.staticGroup();
   for (let i=0;i<this.levelData.platforms.length;i++){
     let curr = this.levelData.platforms[i];
 
@@ -162,15 +162,14 @@ gameScene.setupLevel = function(){
   }
 
     //Create all fires
-    this.fires = this.add.group();
+    this.fires = this.physics.add.group({
+      allowGravity: false,
+      immovable: true,
+    });
     for (let i=0;i<this.levelData.fires.length;i++){
       let curr = this.levelData.fires[i];
   
       let newObj = this.add.sprite(curr.x, curr.y, 'fire').setOrigin(0,0);
-
-      //Enable Physics
-      this.physics.add.existing(newObj, true);
-      newObj.body.immovable = false;
 
       //Play animation
       newObj.anims.play('burning');
