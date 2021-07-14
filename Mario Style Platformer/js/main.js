@@ -38,6 +38,11 @@ gameScene.create = function() {
 
   //Add sprite to physics system
   this.physics.add.existing(ground);
+
+  //Create and add sprites to physics
+  let ground2 = this.physics.add.sprite(180, 200, 'ground');
+
+  
 };
 
 // our game's configuration
