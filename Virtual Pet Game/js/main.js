@@ -9,9 +9,11 @@ gameScene.init = function() {
     fun: 100
   }
 
-  //Decay parameters
-  this.healthDecay = 5;
-  this.funDecay = 5;
+  //Decay Parameters
+  this.decayRates = {
+    health: -5,
+    fun: -2
+  }
 };
 
 // load asset files for our game
@@ -75,7 +77,10 @@ gameScene.create = function() {
   this.timedEventStats = this.time.addEvent({
     delay: 1000,
     repeat: -1, //Repeat forever
-    callback: function(){console.log('Stats Decreasing');},
+    callback: function(){
+      //Update stats
+      this.updateStats(this.decayRates);
+    },
     callbackScope: this
   });
 };
@@ -159,17 +164,8 @@ gameScene.placeItem = function(pointer, localX, localY){
       //Play spreadsheet animation
       this.pet.play('funnyfaces');
 
-      //Pet stats
-      //this.stats.health += this.selectedItem.customStats.health;
-      //this.stats.fun += this.selectedItem.customStats.fun;
-      
-      for (stat in this.selectedItem.customStats){
-        if (this.selectedItem.customStats.hasOwnProperty(stat)){
-          this.stats[stat] += this.selectedItem.customStats[stat];
-        }
-      };
-
-      console.log(this.stats);
+      //Update stats
+      this.updateStats(this.selectedItem.customStats);
       }
   });
 
@@ -207,6 +203,10 @@ gameScene.rotatePet = function(){
     pause: false,
     callbackScope: this,
     onComplete: function(tween, sprites){
+      
+      //Update stats
+      this.scene.updateStats(this.customStats);
+
       //Increase Fun
       this.scene.stats.fun += this.customStats.fun;
 
@@ -272,7 +272,39 @@ gameScene.createHud = function(){
 gameScene.refreshHud = function(){
   this.healthText.setText('Health: '+ this.stats.health);
   this.funText.setText('Fun: '+this.stats.fun);
-}
+};
+
+//Stats Updater
+gameScene.updateStats = function(statDiff){
+      //Pet stats
+      //this.stats.health += this.selectedItem.customStats.health;
+      //this.stats.fun += this.selectedItem.customStats.fun;
+      
+      //Flag to see if game over
+      let isGameOver = false;
+
+      for (stat in statDiff){
+        if (statDiff.hasOwnProperty(stat)){
+          this.stats[stat] += statDiff[stat];
+
+          //Stats cant be negative
+          if (this.stats[stat]<=0){
+            isGameOver = true;
+            this.stats[stat] = 0;
+          } 
+
+          //Refresh HUD
+          this.refreshHud();
+
+          //Check Game Over
+          if(isGameOver) this.gameOver();
+        }
+      };
+};
+
+gameScene.gameOver = function(){
+  console.log('Gameover');
+};
 
 // our game's configuration
 let config = {
