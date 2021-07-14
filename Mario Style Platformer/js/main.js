@@ -87,6 +87,10 @@ gameScene.create = function() {
   //Enable cursor keys
   this.cursors = this.input.keyboard.createCursorKeys();
 
+  this.input.on('pointerdown', function(pointer){
+    console.log(pointer.x, pointer.y);
+  });
+
 };
 
 //Executed on every frame
