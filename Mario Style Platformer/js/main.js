@@ -170,6 +170,8 @@ gameScene.setupLevel = function(){
       let curr = this.levelData.fires[i];
   
       let newObj = this.add.sprite(curr.x, curr.y, 'fire').setOrigin(0,0);
+      //let newObj = this.fires.create(curr.x, curr.y, 'fire').setOrigin(0,0).setOffset(-10,-10);
+
 
       //Play animation
       newObj.anims.play('burning');
