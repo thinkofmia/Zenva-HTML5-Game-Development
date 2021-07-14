@@ -7,6 +7,41 @@ gameScene.init = function() {
   //Player parameters
   this.playerSpeed = 150;
   this.jumpSpeed = -600;
+
+  this.levelData = {
+    platforms: [
+      {
+        x: 72,
+        y: 450,
+        numTiles: 6,
+        key: 'block'
+      },
+      {
+        x: 0,
+        y: 330,
+        numTiles: 8,
+        key: 'block'
+      },
+      {
+        x: 72,
+        y: 210,
+        numTiles: 8,
+        key: 'block'
+      },
+      {
+        x: 0,
+        y: 90,
+        numTiles: 7,
+        key: 'block'
+      },
+      {
+        x: 0,
+        y: 560,
+        numTiles: 1,
+        key: 'ground'
+      },
+    ]
+  };
 };
 
 // load asset files for our game
