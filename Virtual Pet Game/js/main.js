@@ -3,7 +3,7 @@ let config = {
   type: Phaser.AUTO,
   width: 360,
   height: 640,
-  scene: gameScene,
+  scene: [loadingScene, homeScene, gameScene],
   title: 'Virtual Pet',
   pixelArt: false,
   backgroundColor: 'ffffff'
