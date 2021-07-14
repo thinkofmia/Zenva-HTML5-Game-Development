@@ -19,5 +19,15 @@ loadingScene.preload = function(){
 };
 
 loadingScene.create = function(){
+
+    //Animation
+    this.anims.create({
+        key: 'funnyfaces',
+        frames: this.anims.generateFrameNames('pet', {frames: [1,2,3]}),
+        frameRate: 7,
+        yoyo: true,
+        repeat: 0 //Repeat forever is -1
+    });
+
     this.scene.start('Home');
 }
