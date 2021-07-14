@@ -309,7 +309,15 @@ gameScene.gameOver = function(){
   //Change frame of pet
   this.pet.setFrame(4);
 
-  
+  //Keep game on for sometime
+  this.time.addEvent({
+    delay: 2000,
+    repeat: 0,
+    callback: function(){
+      this.scene.restart();
+    },
+    callbackScope: this
+  });
 };
 
 // our game's configuration
