@@ -5,7 +5,7 @@
     },
     "spawner": {
         "interval": 2000,
-        "speed": 10,
+        "speed": 60,
         "lifespan": 5000
     },
     "player": {

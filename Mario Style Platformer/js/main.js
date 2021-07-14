@@ -82,10 +82,10 @@ gameScene.create = function() {
   //let ground2 = this.physics.add.sprite(180, 200, 'ground');
 
   //Collision Detection
-  this.physics.add.collider([this.player, this.goal], this.platforms);
+  this.physics.add.collider([this.player, this.goal, this.barrels], this.platforms);
 
   //Overlaps
-  this.physics.add.overlap(this.player, [this.goal,this.fires], this.restartGame, null, this);
+  this.physics.add.overlap(this.player, [this.goal,this.fires, this.barrels], this.restartGame, null, this);
 
   //Enable cursor keys
   this.cursors = this.input.keyboard.createCursorKeys();
@@ -247,8 +247,16 @@ gameScene.setUpSpawner = function(){
       //Create barrel
       let barrel = this.barrels.create(this.goal.x, this.goal.y, 'barrel');
       //Set Property
-
+      barrel.setVelocityX(this.levelData.spawner.speed);
       //Duration
+      this.time.addEvent({
+        delay: this.levelData.spawner.lifespan,
+        repeat: 0,
+        callbackScope: this,
+        callback: function(){
+          barrel.destroy();
+        }
+      });
     }
   });
 }
