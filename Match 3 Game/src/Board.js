@@ -13,6 +13,12 @@ export default class Board{
             }
         };
 
-        console.log(this.grid);
+        this.consoleLog();
+    }
+
+    consoleLog(){
+        if (this.debug){
+            console.log(this.grid);
+        }
     }
 }
