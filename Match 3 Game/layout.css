@@ -1,5 +1,6 @@
 canvas {
     background-image: url("assets/images/backyard2.png");
+    background-size: contain;
 }
 
 body {
