@@ -13,7 +13,7 @@ blockImage.src = 'assets/images/bean_blue.png';
 const sprite = Sprite({
     x: 200,
     y: 200,
-    color: 'blue',
+//    color: 'blue',
 //    width: 50,
 //    height: 20,
     dx: 2,
