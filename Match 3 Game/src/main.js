@@ -12,18 +12,18 @@ const sprite = Sprite({
     y: 200,
     color: 'blue',
     width: 50,
-    height: 20
+    height: 20,
+    dx: 2
 });
 
 console.log(sprite);
 
 const loop = GameLoop({
     update: ()=>{
-        //console.log('Update');
+        sprite.update();
     },
     render: ()=>{
         sprite.render();
-        //console.log('Render');
     } 
 });
 
