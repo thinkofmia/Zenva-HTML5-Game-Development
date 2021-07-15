@@ -1,7 +1,7 @@
 import Grid from './Grid.js';
 import Board from './Board.js';
 
-const { init, GameLoop, Sprite, initPointer, track } = kontra;
+const { init, GameLoop, Sprite, initPointer, track, load, on } = kontra;
 
 export default class Game {
     constructor(width, height){
@@ -53,8 +53,27 @@ export default class Game {
         //Load Game Assets
         console.log('Loading Assets for Game');
 
-        //Start Game
-        this.start();
+        on('assetLoaded', (asset, url)=>{
+            asset.id = url;
+        });
+        
+        load(
+            'assets/images/bean_blue.png',
+            'assets/images/bean_green.png',
+            'assets/images/bean_orange.png',
+            'assets/images/bean_pink.png',
+            'assets/images/bean_purple.png',
+            'assets/images/bean_red.png',
+            'assets/images/bean_yellow.png',
+            'assets/images/bean_white.png',
+            'assets/images/bean_dead.png',
+        ).then((assets)=>{
+            this.assets = assets;
+            
+            //Start Game
+            this.start();
+        });
+
     }
     start(){
         //Start Game loop
