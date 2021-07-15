@@ -38,6 +38,7 @@ export default class Game {
     
     render(){
         //Render sprites with Kontra
+        this.grid.render();
     }
 
     update(){
