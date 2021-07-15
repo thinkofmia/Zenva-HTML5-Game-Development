@@ -51,6 +51,14 @@ export default class Board{
         }
     }
 
+    swap(source, target){
+        const temp = this.grid[target.row][target.col];
+        this.grid[target.row][target.col] = this.grid[source.row][source.col];
+        this.grid[source.row][source.col] = temp;
+
+        this.consoleLog();
+    }
+
     populateGrid(){
         for (let i=0;i<this.rows;i++){
             for (let j=0;j<this.cols;j++){

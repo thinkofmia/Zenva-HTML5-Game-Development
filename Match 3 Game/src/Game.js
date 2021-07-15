@@ -79,5 +79,7 @@ export default class Game {
             6,
             true,
         )
+
+        window.board = this.board;
     }
 }
