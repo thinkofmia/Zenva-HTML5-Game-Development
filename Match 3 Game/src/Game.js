@@ -1,4 +1,5 @@
 import Grid from './Grid.js';
+import Board from './Board.js';
 
 const { init, GameLoop, Sprite, initPointer, track } = kontra;
 
@@ -31,6 +32,9 @@ export default class Game {
 
         //Create Grid
         this.createGrid();
+
+        //Create board
+        this.createBoard();
 
         //Load Assets
         this.load();
@@ -66,5 +70,13 @@ export default class Game {
             y: 180,
             color: 'lavender',
         });
+    }
+
+    createBoard(){
+        this.board = new Board(
+            this.numberOfRows,
+            this.numberOfCols,
+            true,
+        )
     }
 }
