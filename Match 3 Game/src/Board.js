@@ -177,7 +177,7 @@ export default class Board{
         this.consoleLog();
     }
 
-    dropReserveBlock(){
+    dropReserveBlock(sourceRow, targetRow, col){
         this.grid[targetRow][col] = this.reserveGrid[sourceRow][col];
         this.reserveGrid[sourceRow][col] = 0;
 
