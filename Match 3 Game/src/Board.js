@@ -68,6 +68,13 @@ export default class Board{
         this.consoleLog();
     }
 
+    checkAdjacent(source,target){
+        const diffRow = Math.abs(source.row - target.row);
+        const diffCol = Math.abs(source.col - target.col);
+        const isAdjacent = (diffRow === 1 && diffCol === 0) || (diffCol === 1 && diffRow === 0)
+        return isAdjacent;
+    }
+
     populateGrid(){
         for (let i=0;i<this.rows;i++){
             for (let j=0;j<this.cols;j++){
