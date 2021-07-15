@@ -76,6 +76,7 @@ export default class Game {
         this.board = new Board(
             this.numberOfRows,
             this.numberOfCols,
+            6,
             true,
         )
     }
