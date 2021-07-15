@@ -114,6 +114,7 @@ export default class Game {
 
     createBoard(){
         this.board = new Board(
+            this,
             this.numberOfRows,
             this.numberOfCols,
             6,
@@ -225,6 +226,31 @@ export default class Game {
         else {
             this.clearSelection();
         }
+    }
+
+    getBlockFromColRow(position){
+        let foundBlock;
+
+        this.blockPool.getAliveObjects().forEach((block) =>{
+            if (block.row === position.row && block.col === position.col){
+                foundBlock = block;
+                return true;
+            }
+            return false;
+        });
+
+        return foundBlock;
+    }
+
+    dropBlock(sourceRow, targetRow, col) {
+        const block = this.getBlockFromColRow({col, row: sourceRow});
+        const targetY = 183 + targetRow * (this.blockSize +4);
+        block.row = targetRow;
+        block.y = targetY;
+    }
+
+    dropReserveBlock(sourceRow, targetRow, col) {
+
     }
 
 }

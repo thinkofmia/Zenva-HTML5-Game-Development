@@ -1,5 +1,6 @@
 export default class Board{
-    constructor(rows, cols, blockVariations, debug = false){
+    constructor(state, rows, cols, blockVariations, debug = false){
+        this.state = state;
         this.rows = rows;
         this.cols = cols;
         this.blockVariations = blockVariations;
@@ -163,7 +164,7 @@ export default class Board{
         this.grid[block.row][block.col] = 0;
 
         //Destroy block object
-        //TODO
+        this.state.getBlockFromColRow(block).kill();
         });
 
         this.consoleLog();
@@ -174,7 +175,7 @@ export default class Board{
         this.grid[sourceRow][col] = 0;
 
         //TODO drop block object
-        this.consoleLog();
+        this.state.dropBlock(sourceRow, targetRow, col);
     }
 
     dropReserveBlock(sourceRow, targetRow, col){
@@ -182,7 +183,7 @@ export default class Board{
         this.reserveGrid[sourceRow][col] = 0;
 
         //TODO drop reserve block objecct
-        this.consoleLog();
+        this.state.dropReserveBlock(sourceRow, targetRow, col);
     }
 
     updateGrid(){
