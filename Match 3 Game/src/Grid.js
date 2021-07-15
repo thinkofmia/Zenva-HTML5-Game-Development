@@ -28,7 +28,7 @@ export default class Grid {
         });
 
         //Vertical grid lines
-        for(let i=0;i<this.height + this.cellSize; i += this.cellSize){
+        for(let i=0;i<this.width + this.cellSize; i += this.cellSize){
             const sprite = Sprite({
                 x: this.x + i,
                 y: this.y + 0,
