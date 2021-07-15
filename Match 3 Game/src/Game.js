@@ -1,5 +1,6 @@
-const { init, GameLoop, Sprite, initPointer, track } = kontra;
+import Grid from './Grid.js';
 
+const { init, GameLoop, Sprite, initPointer, track } = kontra;
 
 export default class Game {
     constructor(width, height){
@@ -24,6 +25,9 @@ export default class Game {
             render: this.render.bind(this)
         });
 
+        //Create Grid
+        this.createGrid();
+
         //Load Assets
         this.load();
     }
@@ -47,5 +51,15 @@ export default class Game {
         //Start Game loop
         console.log('Starting Game');
         this.GameLoop.start();
+    }
+    createGrid(){
+        this.grid = new Grid({
+            numberOfRows: 8,
+            numberOfCols: 8,
+            cellSize: 35,
+            x: 25,
+            y: 180,
+            color: 'lavender',
+        });
     }
 }
