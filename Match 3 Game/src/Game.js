@@ -7,6 +7,10 @@ export default class Game {
         this.width = width;
         this.height = height;
 
+        this.numberOfCols = 8;
+        this.numberOfRows = 8;
+        this.blockSize = 35;
+
         this.init();
     }
 
@@ -54,9 +58,9 @@ export default class Game {
     }
     createGrid(){
         this.grid = new Grid({
-            numberOfRows: 8,
-            numberOfCols: 8,
-            cellSize: 35,
+            numberOfRows: this.numberOfRows,
+            numberOfCols: this.numberOfCols,
+            cellSize: this.blockSize + 4,
             x: 25,
             y: 180,
             color: 'lavender',
