@@ -13,6 +13,7 @@ export default class Grid {
         this.width = this.numberOfCols * this.cellSize;
 
         this.backgroundSprite = null;
+        this.gridSprites = [];
 
         this.init();
     }
@@ -25,11 +26,25 @@ export default class Grid {
             width: this.width,
             height: this.height,
         });
+
+        for(let i=0;i<this.height + this.cellSize; i += this.cellSize){
+            const sprite = Sprite({
+                x: this.x + i,
+                y: this.y + 0,
+                color: this.color,
+                width: 1,
+                height: this.height,
+            });
+            this.gridSprites.push(sprite);
+        }
     }
 
     render(){
         if (this.backgroundSprite){
             this.backgroundSprite.render();
         }
+        this.gridSprites.forEach((sprite)=>{
+            sprite.render();
+        });
     }
 }
