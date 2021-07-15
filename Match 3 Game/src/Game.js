@@ -1,7 +1,8 @@
 import Grid from './Grid.js';
 import Board from './Board.js';
+import Block from './Block.js';
 
-const { init, GameLoop, Sprite, initPointer, track, load, on } = kontra;
+const { init, GameLoop, Sprite, initPointer, track, load, on, Pool } = kontra;
 
 export default class Game {
     constructor(width, height){
@@ -43,6 +44,10 @@ export default class Game {
     render(){
         //Render sprites with Kontra
         this.grid.render();
+
+        if (this.blockPool){
+            this.blockPool.render();
+        }
     }
 
     update(){
@@ -82,6 +87,7 @@ export default class Game {
         //Start Game loop
         console.log('Starting Game');
         this.GameLoop.start();
+        this.drawBoard();
     }
     createGrid(){
         this.grid = new Grid({
@@ -102,6 +108,30 @@ export default class Game {
             true,
         )
 
-        window.board = this.board;
+        //window.board = this.board;
+
+        this.blockPool = Pool({
+            create: ()=>{
+                return new Block();
+            },
+        });
+    }
+
+    drawBoard(){
+        for (let i=0;i<this.numberOfRows;i++){
+            for (let j=0;j<this.numberOfCols;j++){
+                const x = 28 + j * (this.blockSize + 4);
+                const y = 183 + i*(this.blockSize + 4);
+
+                const block = this.blockPool.get({
+                   x,
+                   y,
+                   row: i,
+                   col: j,
+                   image: this.assets[this.board.grid[i][j]],
+                   ttl: Infinity, 
+                });
+            }
+        };
     }
 }
