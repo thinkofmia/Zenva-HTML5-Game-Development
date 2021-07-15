@@ -1,7 +1,7 @@
 export default class Grid {
     constructor(config){
-        this.numberOfRows = numberOfRows;
-        this.numberOfCols = numberOfCols;
+        this.numberOfRows = config.numberOfRows;
+        this.numberOfCols = config.numberOfCols;
         this.cellSize = config.cellSize;
         this.color = config.color;
         this.x = config.x;
