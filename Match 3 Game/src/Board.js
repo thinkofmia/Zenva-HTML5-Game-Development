@@ -93,4 +93,45 @@ export default class Board{
         };
     }
 
+    isChained(block){
+        let isChained = false;
+        const variation = this.grid[block.row][block.col];
+        const { row, col } = block;
+
+        //LEft
+        if (variation === this.grid[row][col -1] && variation === this.grid[row][col -2]){
+            isChained = true;
+        }
+
+        //Right
+        if (variation === this.grid[row][col +1] && variation === this.grid[row][col +2]){
+            isChained = true;
+        }
+
+        //Up
+        if(this.grid[row-2]){
+            if (variation === this.grid[row-1][col] && variation === this.grid[row-2][col]){
+                isChained = true;
+            }
+        }
+
+        //Down
+        if(this.grid[row+2]){
+            if (variation === this.grid[row+1][col] && variation === this.grid[row+2][col]){
+                isChained = true;
+            }
+        }
+
+        //Center Horizontaal
+        if (variation === this.grid[row][col -1] && variation === this.grid[row][col +1]){
+            isChained = true;
+        }
+
+        //Center Vertical
+        if(this.grid[row+1] && this.grid[row-1]){
+            if (variation === this.grid[row+1][col] && variation === this.grid[row-1][col]){
+                isChained = true;
+            }
+        }
+    }
 }
