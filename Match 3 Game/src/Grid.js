@@ -27,6 +27,7 @@ export default class Grid {
             height: this.height,
         });
 
+        //Vertical grid lines
         for(let i=0;i<this.height + this.cellSize; i += this.cellSize){
             const sprite = Sprite({
                 x: this.x + i,
@@ -34,6 +35,18 @@ export default class Grid {
                 color: this.color,
                 width: 1,
                 height: this.height,
+            });
+            this.gridSprites.push(sprite);
+        };
+
+        //Horizontal lines
+        for(let i=0;i<this.height + this.cellSize; i += this.cellSize){
+            const sprite = Sprite({
+                x: this.x + 0,
+                y: this.y + i,
+                color: this.color,
+                width: this.width,
+                height: 1,
             });
             this.gridSprites.push(sprite);
         }
