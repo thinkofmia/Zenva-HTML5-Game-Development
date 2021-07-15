@@ -46,12 +46,24 @@ export default class Game {
         this.grid.render();
 
         if (this.blockPool){
-            this.blockPool.render();
+            this.blockPool.getAliveObjects().forEach((block)=>{
+                if (block.selected){
+                    block.context.globalAlpha = 0.6;
+                }
+                else {
+                    block.context.globalAlpha = 1;
+                }
+                block.render();
+                block.context.globalAlpha = 1;
+            });
         }
     }
 
     update(){
         //Update Sprites
+        if (this.blockPool){
+            this.blockPool.update();
+        }
     }
 
     load(){
@@ -105,7 +117,7 @@ export default class Game {
             this.numberOfRows,
             this.numberOfCols,
             6,
-            true,
+            false,
         )
 
         //window.board = this.board;
@@ -131,7 +143,48 @@ export default class Game {
                    image: this.assets[this.board.grid[i][j]],
                    ttl: Infinity, 
                 });
+
+                block.onDown = () =>{
+                    this.pickBlock(block);
+                };
+                track(block);
             }
         };
     }
+
+    pickBlock(block){
+        if (this.isBoardBlocked){
+            return;
+        }
+
+        //If this is the first block picked
+        if (!this.selectedBlock){
+            block.selected = true;
+            this.selectedBlock = block;
+        }
+        else {
+            //2nd Block selected is target
+            this.targetBlock = block;
+
+            if(this.board.checkAdjacent(this.selectedBlock, this.targetBlock)){
+                this.isBoardBlocked = true;
+
+                this.swapBlocks(this.selectedBlock, this.targetBlock);
+            }
+            else {
+                this.clearSelection();
+            }
+        }
+    }
+
+    swapBlocks(block1, block2){
+        console.log(block1, block2);
+    }
+
+    clearSelection(){
+        this.isBoardBlocked = false;
+        this.selectedBlock.selected =false;
+        this.selectedBlock =null;
+    }
+
 }
