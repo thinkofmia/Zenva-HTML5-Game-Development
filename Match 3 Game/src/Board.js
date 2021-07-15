@@ -24,7 +24,30 @@ export default class Board{
 
     consoleLog(){
         if (this.debug){
-            console.log(this.grid);
+            //Printe reserve grid
+            let prettyString = '';
+            for (let i=0;i<this.rows;i++){
+                prettyString += "\n";
+                for (let j=0;j<this.cols;j++){
+                    prettyString += " " +this.reserveGrid[i][j];
+                }
+            };
+
+            //Separate grids
+            prettyString += '\n';
+            for (let j=0;j< this.cols;j++){
+                prettyString += ' -';
+            }
+
+            //Print Main Grid
+            for (let i=0;i<this.rows;i++){
+                prettyString += "\n";
+                for (let j=0;j<this.cols;j++){
+                    prettyString += " " +this.grid[i][j];
+                }
+            };
+
+            console.log(prettyString);
         }
     }
 
