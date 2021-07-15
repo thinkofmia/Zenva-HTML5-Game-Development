@@ -1,3 +1,9 @@
 canvas {
+    background-image: url("assets/images/backyard2.png");
+}
+
+body {
+    margin: 0px;
+    text-align: center;
     background-color: goldenrod;
 }
