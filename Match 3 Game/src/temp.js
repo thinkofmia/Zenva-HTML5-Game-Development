@@ -3,6 +3,13 @@ import { test } from './Game.js';
 
 console.log(test);
 */
+//export default 1;
+/*
+export const test = 1;
+
+{
+    test: test
+}*/
 const { init, GameLoop, Sprite, initPointer, track } = kontra;
 
 const { canvas, context } = init();
