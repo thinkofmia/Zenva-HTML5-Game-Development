@@ -56,7 +56,7 @@ export default class Game {
         on('assetLoaded', (asset, url)=>{
             asset.id = url;
         });
-        
+
         load(
             'assets/images/bean_blue.png',
             'assets/images/bean_green.png',
@@ -72,6 +72,9 @@ export default class Game {
             
             //Start Game
             this.start();
+            console.log(this.assets);
+        }).catch((error)=>{
+            console.log(error);
         });
 
     }
