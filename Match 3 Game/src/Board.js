@@ -134,4 +134,23 @@ export default class Board{
             }
         }
     }
+
+    findAllChains(){
+        const chained = [];
+
+        for (let i=0;i<this.rows;i++){
+            for (let j=0;j<this.cols;j++){
+                if( this.isChained({
+                    row:i,
+                    col: j,
+                })){
+                    chained.push({
+                        row: i,
+                        col: j,
+                    })
+                }
+            }
+        };
+        return chained;
+    }
 }
