@@ -214,5 +214,4 @@ export default class Board{
         this.populateReserveGrid();
         this.consoleLog();
     }
-
 }

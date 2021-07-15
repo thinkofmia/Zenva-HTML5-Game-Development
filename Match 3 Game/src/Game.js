@@ -178,13 +178,53 @@ export default class Game {
     }
 
     swapBlocks(block1, block2){
-        console.log(block1, block2);
+        //console.log(block1, block2);
+        //Swap locatioon of 2 blocks
+        const tempX = block1.x;
+        const tempY = block1.y;
+        block1.x = block2.x;
+        block1.y = block2.y;
+        block2.x = tempX;
+        block2.y = tempY;
+
+        this.board.swap(block1,block2);
+
+        if (!this.isReversingSwap){
+            //Check chains
+            const chains = this.board.findAllChains();
+            if (chains.length>0){
+                this.updateBoard();
+            }
+            else {
+                this.isReversingSwap = true;
+                this.swapBlocks(block1,block2);
+            }
+        }
+        else {
+            this.isReversingSwap = false;
+            this.clearSelection();
+        }
+        
     }
 
     clearSelection(){
         this.isBoardBlocked = false;
         this.selectedBlock.selected =false;
         this.selectedBlock =null;
+    }
+
+    updateBoard(){
+        this.board.clearChains();
+        this.board.updateGrid();
+
+        const chains = this.board.findAllChains();
+
+        if (chains.length>0){
+            this.updateBoard();
+        }
+        else {
+            this.clearSelection();
+        }
     }
 
 }
