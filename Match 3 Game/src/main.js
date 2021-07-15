@@ -21,6 +21,10 @@ console.log(sprite);
 const loop = GameLoop({
     update: ()=>{
         sprite.update();
+
+        if (sprite.x>canvas.width){
+            sprite.x = -sprite.width;
+        }
     },
     render: ()=>{
         sprite.render();
