@@ -5,7 +5,7 @@ export function resize(gameWidth, gameHeight){
 
     const windowRatio = width/height;
     const gameWindowRatio = gameWidth/gameHeight;
-    console.log(windowRatio, gameWindowRatio);
+    //console.log(windowRatio, gameWindowRatio);
 
     if (gameWindowRatio< windowRatio){
         canvas.style.width = `${height * gameWindowRatio}px`;

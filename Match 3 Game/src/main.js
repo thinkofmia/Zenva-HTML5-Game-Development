@@ -5,7 +5,7 @@ const HEIGHT = 640;
 const WIDTH = 360;
 
 const game = new Game(WIDTH, HEIGHT);
-console.log(game);
+//console.log(game);
 
 resize(WIDTH, HEIGHT);
 window.addEventListener('resize', ()=>{
