@@ -9,10 +9,10 @@ const { canvas, context } = init();
 
 const loop = GameLoop({
     update: ()=>{
-        console.log('Update');
+        //console.log('Update');
     },
     render: ()=>{
-        console.log('Render');
+        //console.log('Render');
     } 
 });
 
