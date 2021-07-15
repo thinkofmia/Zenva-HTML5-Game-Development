@@ -153,4 +153,19 @@ export default class Board{
         };
         return chained;
     }
+
+    clearChains(){
+        //Get All blocks to be cleared
+        const chainedBlocks = this.findAllChains();
+
+        chainedBlocks.forEach((block) => {
+        //Set them to 0
+        this.grid[block.row][block.col] = 0;
+
+        //Destroy block object
+        //TODO
+        });
+
+        this.consoleLog();
+    }
 }
