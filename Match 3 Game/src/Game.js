@@ -250,7 +250,22 @@ export default class Game {
     }
 
     dropReserveBlock(sourceRow, targetRow, col) {
+        const x = 28 + col * (this.blockSize + 4);
+        const y = 183 + targetRow * (this.blockSize +4);
 
+        const block = this.blockPool.get({
+            x,
+            y,
+            col,
+            row: targetRow,
+            image: this.assets[this.board.grid[targetRow][col]],
+            ttl: Infinity
+        });
+
+        block.onDown = () =>{
+            this.pickBlock(block);
+        };
+        track(block);
     }
 
 }
