@@ -6,6 +6,8 @@ Made in JavaScript, Phaser 3 and/or Kontra.js frameworks.
 Course Link: https://academy.zenva.com/product/html5-game-phaser-mini-degree/
 
 ## Games
+Link to play: https://thinkofmia.github.io/Zenva-HTML5-Game-Development/
+
 - Crossy Road Game (Phaser 3)
 - Language Learner Game (Pure JavaScript)
 - Spanish Teaching Game (Phaser 3)
@@ -13,4 +15,4 @@ Course Link: https://academy.zenva.com/product/html5-game-phaser-mini-degree/
 - Mario-style Platformer Game (Phaser 3)
 - Match 3 Game (Kontra)
 
-Link to play: https://thinkofmia.github.io/Zenva-HTML5-Game-Development/
+Note that some of the games work best in portrait/mobile view and are scaled according to your device width.
