@@ -48,6 +48,7 @@ function create(){
 
     this.player = this.physics.add.image(32,32,'characters',0);
     this.player.setScale(2);
+    this.player.body.setCollideWorldBounds(true);
 
     this.cursors = this.input.keyboard.createCursorKeys();
 }
