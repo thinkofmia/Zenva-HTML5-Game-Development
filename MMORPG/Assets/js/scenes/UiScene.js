@@ -3,11 +3,21 @@ class UiScene extends Phaser.Scene{
         super('Ui');
     }
 
-    preload(){
-
+    create() {
+        this.setupUiElements();
+        this.setupEvents();
     }
 
-    create() {
+    setupUiElements(){
+        //Create score text game obj
+        this.scoreText= this.add.text(35,8, 'Coins: 0', {
+            fontSize:'16px',
+            fill: '#fff',
+        });
+        this.coinIcon = this.add.image(15,15,'items',3);
+    }
+
+    setupEvents(){
 
     }
 }

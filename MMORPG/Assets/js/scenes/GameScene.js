@@ -3,8 +3,8 @@ class GameScene extends Phaser.Scene{
         super('Game');
     }
 
-    preload(){
-
+    init(){
+        this.scene.launch('Ui');
     }
 
     create() {
