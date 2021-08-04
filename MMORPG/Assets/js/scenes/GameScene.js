@@ -8,7 +8,7 @@ class GameScene extends Phaser.Scene{
     }
 
     create() {
-        var goldPickupAudio = this.sound.add('goldSound', {
+        this.goldPickupAudio = this.sound.add('goldSound', {
             loop:false,
             volume: 0.2,
         });
@@ -23,15 +23,17 @@ class GameScene extends Phaser.Scene{
         
     
         this.physics.add.collider(this.player, this.wall);
-        this.physics.add.overlap(this.player, this.chest, function(player,chest){    
-            chest.destroy();
-            goldPickupAudio.play();
-        });
+        this.physics.add.overlap(this.player, this.chest, this.collectChest, null,this);
     
         this.cursors = this.input.keyboard.createCursorKeys();
     }
     
     update() {
         this.player.update(this.cursors);
+    }
+
+    collectChest(player, chest){
+        chest.destroy();
+        this.goldPickupAudio.play();
     }
 }
