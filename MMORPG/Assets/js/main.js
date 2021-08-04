@@ -49,8 +49,21 @@ function create(){
     this.player = this.physics.add.image(32,32,'characters',0);
     this.player.setScale(2);
 
+    this.cursors = this.input.keyboard.createCursorKeys();
 }
 
 function update(){
-
+    this.player.setVelocity(0);
+    if (this.cursors.left.isDown){
+        this.player.setVelocityX(-160);
+    }
+    else if (this.cursors.right.isDown){
+        this.player.setVelocityX(160);
+    }
+    if (this.cursors.up.isDown){
+        this.player.setVelocityY(-160);
+    }
+    else if (this.cursors.down.isDown){
+        this.player.setVelocityY(160);
+    }
 }
