@@ -17,7 +17,7 @@ class GameScene extends Phaser.Scene{
         button.setOrigin(0.5,0.5);
     
         this.add.sprite(300,100,'button1');
-        this.chest = this.physics.add.image(300,300,'items');
+        this.chest = new Chest(this, 300,300,'items');
     
         this.wall = this.physics.add.image(500,100, 'button1');
         this.wall.setImmovable();
