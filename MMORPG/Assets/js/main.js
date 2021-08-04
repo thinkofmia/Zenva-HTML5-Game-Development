@@ -22,9 +22,12 @@ function preload(){
 }
 
 function create(){
-    this.add.image(100,100,'button1');
+    var button = this.add.image(100,100,'button1');
+    button.setOrigin(0.5,0.5);
+
+    this.add.sprite(300,100,'button1');
 }
 
 function update(){
-    
+
 }
