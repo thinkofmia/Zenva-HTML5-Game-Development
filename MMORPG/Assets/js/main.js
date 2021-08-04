@@ -31,6 +31,10 @@ function preload(){
         frameWidth: 32,
         frameHeight: 32,
     });
+    this.load.spritesheet('characters','Assets/images/characters.png', {
+        frameWidth: 32,
+        frameHeight: 32,
+    });
 }
 
 function create(){
@@ -41,6 +45,10 @@ function create(){
     this.add.image(300,300,'items');
 
     this.physics.add.image(500,100, 'button1');
+
+    this.player = this.physics.add.image(32,32,'characters',0);
+    this.player.setScale(2);
+
 }
 
 function update(){
