@@ -12,6 +12,9 @@ class BootScene extends Phaser.Scene{
 
         //Load Audios
         this.loadAudio();
+
+        //Load Tilemap
+        this.loadTileMap();
     }
 
     create(){
@@ -22,6 +25,8 @@ class BootScene extends Phaser.Scene{
     loadImages(){
         this.load.image('button1', 'Assets/images/ui/blue_button01.png');
         this.load.image('button2', 'Assets/images/ui/blue_button02.png');
+        //Load tilemap
+        this.load.image('background', 'assets/level/background-extruded.png');
     }
 
     loadSpriteSheets(){
@@ -37,5 +42,9 @@ class BootScene extends Phaser.Scene{
 
     loadAudio(){
         this.load.audio('goldSound','Assets/audio/Pickup.wav');
+    }
+
+    loadTileMap(){
+        this.load.tilemapTiledJSON('map','assets/level/large_level.json');
     }
 }

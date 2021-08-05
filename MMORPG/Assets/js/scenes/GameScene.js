@@ -17,7 +17,9 @@ class GameScene extends Phaser.Scene{
     
         this.createPlayer();
     
-       this.setCollision();
+        this.setCollision();
+
+        this.createMap();
 
         this.cursors = this.input.keyboard.createCursorKeys();
     }
@@ -92,5 +94,14 @@ class GameScene extends Phaser.Scene{
         chest.makeInactive();
         //Spawn a new chest
         this.time.delayedCall(1000,this.spawnChest, [],this);
+    }
+
+    createMap(){
+        //Create tile map
+        this.map = this.make.tilemap({key: 'map'});
+        //Add tileset image
+        this.tiles = this.map.addTilesetImage('background','background',32,32,1,2);
+        //Create background
+        this.backgroundLayer = this.map.createStaticLayer('background', this.tiles, 0,0);
     }
 }
