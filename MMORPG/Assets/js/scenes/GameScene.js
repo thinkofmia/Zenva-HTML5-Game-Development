@@ -108,5 +108,13 @@ class GameScene extends Phaser.Scene{
         //Crate Blocked layer
         this.blockedLayer = this.map.createStaticLayer('blocked', this.tiles, 0, 0);
         this.blockedLayer.setScale(2);
+
+        //Update world bounds
+        this.physics.world.bounds.width = this.map.widthInPixels *2;
+        this.physics.world.bounds.height = this.map.heightInPixels *2;
+
+        //Limit camera to size of map
+        this.cameras.main.setBounds(0,0,this.map.widthInPixels *2, this.map.heightInPixels *2);
+        
     }
 }
