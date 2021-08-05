@@ -9,17 +9,18 @@ class GameScene extends Phaser.Scene{
     }
 
     create() {
+        
+        this.createMap();
+
         this.createAudio();
     
         this.createChests();
         
-        this.createWalls();
+        //this.createWalls();
     
         this.createPlayer();
     
         this.setCollision();
-
-        this.createMap();
 
         this.cursors = this.input.keyboard.createCursorKeys();
     }
@@ -103,5 +104,9 @@ class GameScene extends Phaser.Scene{
         this.tiles = this.map.addTilesetImage('background','background',32,32,1,2);
         //Create background
         this.backgroundLayer = this.map.createStaticLayer('background', this.tiles, 0,0);
+        this.backgroundLayer.setScale(2);
+        //Crate Blocked layer
+        this.blockedLayer = this.map.createStaticLayer('blocked', this.tiles, 0, 0);
+        this.blockedLayer.setScale(2);
     }
 }
