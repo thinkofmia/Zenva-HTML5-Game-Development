@@ -17,10 +17,6 @@ class GameScene extends Phaser.Scene{
         this.createChests();
         
         //this.createWalls();
-    
-        this.createPlayer();
-    
-        this.setCollision();
 
         this.createGameManager();
 
@@ -32,6 +28,11 @@ class GameScene extends Phaser.Scene{
     }
 
     createGameManager(){
+        this.events.on('spawnPlayer', (location)=>{            
+            this.createPlayer(location);
+            this.setCollision();
+        });
+
         this.gameManager = new GameManager(this, this.map.map.objects);
         this.gameManager.setup();
     }
@@ -43,8 +44,8 @@ class GameScene extends Phaser.Scene{
         });
     }
 
-    createPlayer(){
-        this.player = new Player(this, 224,224,'characters',0);
+    createPlayer(location){
+        this.player = new Player(this, location[0],location[1],'characters',0);
         
     }
 
