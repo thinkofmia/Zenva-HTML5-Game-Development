@@ -37,7 +37,7 @@ class GameScene extends Phaser.Scene{
     }
 
     createPlayer(){
-        this.player = new Player(this, 32,32,'characters',0);
+        this.player = new Player(this, 224,224,'characters',0);
         
     }
 
@@ -82,7 +82,9 @@ class GameScene extends Phaser.Scene{
     }
 
     setCollision(){
-        this.physics.add.collider(this.player, this.wall);
+        //Check collision between player and blocked layer
+        this.physics.add.collider(this.player, this.blockedLayer);
+        //Check overlaps between player and chests
         this.physics.add.overlap(this.player, this.chests, this.collectChest, null,this);
     
     }
@@ -108,6 +110,7 @@ class GameScene extends Phaser.Scene{
         //Crate Blocked layer
         this.blockedLayer = this.map.createStaticLayer('blocked', this.tiles, 0, 0);
         this.blockedLayer.setScale(2);
+        this.blockedLayer.setCollisionByExclusion([-1]);
 
         //Update world bounds
         this.physics.world.bounds.width = this.map.widthInPixels *2;
