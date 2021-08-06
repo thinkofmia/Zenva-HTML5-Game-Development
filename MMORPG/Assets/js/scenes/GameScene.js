@@ -24,7 +24,7 @@ class GameScene extends Phaser.Scene{
     }
     
     update() {
-        this.player.update(this.cursors);
+        if (this.player) this.player.update(this.cursors);
     }
 
     createGameManager(){
@@ -45,7 +45,7 @@ class GameScene extends Phaser.Scene{
     }
 
     createPlayer(location){
-        this.player = new Player(this, location[0],location[1],'characters',0);
+        this.player = new Player(this, location[0] *2,location[1]*2,'characters',0);
         
     }
 
