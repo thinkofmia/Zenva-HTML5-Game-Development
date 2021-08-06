@@ -22,11 +22,18 @@ class GameScene extends Phaser.Scene{
     
         this.setCollision();
 
+        this.createGameManager();
+
         this.cursors = this.input.keyboard.createCursorKeys();
     }
     
     update() {
         this.player.update(this.cursors);
+    }
+
+    createGameManager(){
+        this.gameManager = new GameManager(this, this.map.map.objects);
+        this.gameManager.setup();
     }
 
     createAudio(){
