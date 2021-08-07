@@ -28,8 +28,8 @@ class GameScene extends Phaser.Scene{
     }
 
     createGameManager(){
-        this.events.on('spawnPlayer', (location)=>{            
-            this.createPlayer(location);
+        this.events.on('spawnPlayer', (playerObject)=>{            
+            this.createPlayer(playerObject);
             this.setCollision();
         });
 
@@ -68,8 +68,17 @@ class GameScene extends Phaser.Scene{
         });
     }
 
-    createPlayer(location){
-        this.player = new PlayerContainer(this, location[0] *2,location[1]*2,'characters',0);
+    createPlayer(playerObject){
+        this.player = new PlayerContainer(
+            this, 
+            playerObject.x *2, 
+            playerObject.y*2,
+            'characters',
+            0,
+            playerObject.health,
+            playerObject.maxHealth,
+            playerObject.id
+            );
         
     }
 

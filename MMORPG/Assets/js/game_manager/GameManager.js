@@ -6,6 +6,7 @@ class GameManager{
         this.spawners = {};
         this.chests = {};
         this.monsters = {};
+        this.players = {};
 
         this.playerLocations = [];
         this.chestLocations = {};
@@ -121,8 +122,9 @@ class GameManager{
     }
 
     spawnPlayer(){
-        const location = this.playerLocations[Math.floor(Math.random()*this.playerLocations.length)];
-        this.scene.events.emit('spawnPlayer', location);
+        const player = new PlayerModel(this.playerLocations);
+        this.players[player.id] = player;
+        this.scene.events.emit('spawnPlayer', player);
     }
 
     addChest(id, chest){
