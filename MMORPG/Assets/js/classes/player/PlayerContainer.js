@@ -40,6 +40,8 @@ class PlayerContainer extends Phaser.GameObjects.Container {
         this.scene.physics.world.enable(this.weapon);
         this.add(this.weapon);
         this.weapon.alpha = 0;
+        
+        this.createHealthBar();
     }
 
     update(cursors){
@@ -101,6 +103,28 @@ class PlayerContainer extends Phaser.GameObjects.Container {
                 this.weapon.flipX = true;
             }
         }
+
+        this.updateHealthBar();
+    }
+
+    createHealthBar(){
+        this.healthBar = this.scene.add.graphics();
+        this.updateHealthBar();
+    }
+
+    updateHealthBar(){
+        this.healthBar.clear();
+        this.healthBar.fillStyle(0xffffff, 1);
+        this.healthBar.fillRect(this.x - 32, this.y - 40, 64, 5);
+        this.healthBar.fillGradientStyle(0xff0000, 0xffffff, 4);
+        this.healthBar.fillRect(this.x - 32, this.y - 40, 64*this.health/this.maxHealth, 5);
+
+    }
+
+    updateHealth(health){
+        this.health = health;
+        this.updateHealthBar();
+
     }
 
 }

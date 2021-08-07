@@ -65,12 +65,12 @@ class GameManager{
         
         //Update spawner
         if (this.monsters[monsterId]){
+          const { gold, attack } = this.monsters[monsterId];
           //Subtract health
           this.monsters[monsterId].loseHealth();
 
           //Check if monster dead
           if (this.monsters[monsterId].health <=0){
-            const { gold } = this.monsters[monsterId];
 
             //Update player
             this.players[playerId].updateGold(gold);
@@ -81,6 +81,11 @@ class GameManager{
             this.scene.events.emit('monsterRemoved', monsterId);
           }
           else {
+            //Update player health
+            this.players[playerId].updateHealth(-attack);
+            this.scene.events.emit('updatePlayerHealth', playerId, this.players[playerId].health);
+
+            //Update monsters health
             this.scene.events.emit('updateMonsterHealth', monsterId, this.monsters[monsterId].health);
           }
           
