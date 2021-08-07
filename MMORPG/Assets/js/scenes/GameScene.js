@@ -41,6 +41,14 @@ class GameScene extends Phaser.Scene{
             this.spawnMonster(monster);
         });
 
+        this.events.on('monsterRemoved', (monsterId)=>{  
+            this.monsters.getChildren().forEach((monster)=>{
+                if (monster.id===monsterId){
+                    monster.makeInactive();
+                }
+            })
+        });
+
         this.gameManager = new GameManager(this, this.map.map.objects);
         this.gameManager.setup();
     }
@@ -142,8 +150,8 @@ class GameScene extends Phaser.Scene{
     enemyOverlap( player, enemy){
         if (this.player.playerAttacking && !this.player.swordHit){
             this.player.swordHit = true;
-            enemy.makeInactive();
-            this.events.emit('destroyEnemy', enemy.id);
+            //enemy.makeInactive();
+            this.events.emit('monsterAttacked', enemy.id);
         }
     }
 
