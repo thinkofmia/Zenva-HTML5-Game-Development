@@ -37,6 +37,10 @@ class GameScene extends Phaser.Scene{
             this.spawnChest(chest);
         });
 
+        this.events.on('monsterSpawned', (monster)=>{            
+            this.spawnMonster(monster);
+        });
+
         this.gameManager = new GameManager(this, this.map.map.objects);
         this.gameManager.setup();
     }
@@ -73,6 +77,11 @@ class GameScene extends Phaser.Scene{
         }
         */
     
+    }
+
+    spawnMonster(monster){
+        // TODO
+        console.log(monster);
     }
 
     spawnChest(chestObject){
