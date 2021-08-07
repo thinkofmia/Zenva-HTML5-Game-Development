@@ -95,8 +95,8 @@ class GameManager{
             //Check player health below 0, else respawn
             if (this.players[playerId].health<=0){
               //Update gold player has
-              this.players[playerId].updateGold(parseInt(-this.players[playerId].gold/2), 10);
-              this.scene.events.emit('updateScore', monsterId, this.players[playerId].gold);
+              this.players[playerId].updateGold(parseInt(this.players[playerId].gold/2, 10));
+              this.scene.events.emit('updateScore', this.players[playerId].gold);
 
               //Respawn player
               this.players[playerId].respawn();
