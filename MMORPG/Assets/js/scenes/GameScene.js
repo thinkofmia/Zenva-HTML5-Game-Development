@@ -134,14 +134,17 @@ class GameScene extends Phaser.Scene{
         this.physics.add.overlap(this.player, this.chests, this.collectChest, null,this);
         //Check collision between monsters and blocked layer
         this.physics.add.collider(this.monsters, this.map.blockedLayer);
-        //Check overlaps between monsters and chests
-        this.physics.add.overlap(this.player, this.monsters, this.enemyOverlap, null,this);
+        //Check overlaps between monsters and weapon
+        this.physics.add.overlap(this.player.weapon, this.monsters, this.enemyOverlap, null,this);
     
     }
 
     enemyOverlap( player, enemy){
-        enemy.makeInactive();
-        this.events.emit('destroyEnemy', enemy.id);
+        if (this.player.playerAttacking && !this.player.swordHit){
+            this.player.swordHit = true;
+            enemy.makeInactive();
+            this.events.emit('destroyEnemy', enemy.id);
+        }
     }
 
     collectChest(player, chest){
