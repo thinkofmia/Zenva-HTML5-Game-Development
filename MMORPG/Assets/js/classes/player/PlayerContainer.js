@@ -72,11 +72,13 @@ class PlayerContainer extends Phaser.GameObjects.Container {
             else if (this.currentDirection ===Direction.UP){
                 this.weapon.setAngle(-90);
             }
-            else if (this.currentDirection ===Direction.LEFT){
-                this.weapon.setAngle(-180);
-            }
             else {
                 this.weapon.setAngle(0);
+            }
+
+            this.weapon.flipX = false;
+            if (this.currentDirection ===Direction.LEFT){
+                this.weapon.flipX = true;
             }
         }
     }
