@@ -79,6 +79,10 @@ class GameManager{
             //Removing monster
             this.spawners[this.monsters[monsterId].spawnerId].removeObject(monsterId);
             this.scene.events.emit('monsterRemoved', monsterId);
+
+            //Add bonus health to player
+            this.players[playerId].updateHealth(2);
+            this.scene.events.emit('updatePlayerHealth', playerId, this.players[playerId].health);
           }
           else {
             //Update player health
@@ -87,6 +91,18 @@ class GameManager{
 
             //Update monsters health
             this.scene.events.emit('updateMonsterHealth', monsterId, this.monsters[monsterId].health);
+
+            //Check player health below 0, else respawn
+            if (this.players[playerId].health<=0){
+              //Update gold player has
+              this.players[playerId].updateGold(parseInt(-this.players[playerId].gold/2), 10);
+              this.scene.events.emit('updateScore', monsterId, this.players[playerId].gold);
+
+              //Respawn player
+              this.players[playerId].respawn();
+              this.scene.events.emit('respawnPlayer', this.players[playerId]);
+            }
+
           }
           
         }
