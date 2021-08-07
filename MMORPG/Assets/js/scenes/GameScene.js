@@ -14,7 +14,7 @@ class GameScene extends Phaser.Scene{
 
         this.createAudio();
     
-        this.createChests();
+        this.createGroups();
         
         //this.createWalls();
 
@@ -33,6 +33,10 @@ class GameScene extends Phaser.Scene{
             this.setCollision();
         });
 
+        this.events.on('chestSpawned', (chest)=>{            
+            this.spawnChest(chest);
+        });
+
         this.gameManager = new GameManager(this, this.map.map.objects);
         this.gameManager.setup();
     }
@@ -49,9 +53,10 @@ class GameScene extends Phaser.Scene{
         
     }
 
-    createChests(){
+    createGroups(){
         //Create chest group
         this.chests = this.physics.add.group();
+        /*
         //Create chest position array
         this.chestPositions = [
             [100,100],
@@ -66,18 +71,21 @@ class GameScene extends Phaser.Scene{
         for (let i=0;i<this.maxNoOfChests;i++){
             this.spawnChest();
         }
+        */
     
     }
 
-    spawnChest(){
-        const location = this.chestPositions[Math.floor(Math.random()*this.chestPositions.length)];
+    spawnChest(chestObject){
+        //const location = this.chestPositions[Math.floor(Math.random()*this.chestPositions.length)];
         let chest = this.chests.getFirstDead();
         if(!chest){
-            const chest = new Chest(this, location[0],location[1],'items');
+            const chest = new Chest(this, chestObject.x * 2, chestObject.y * 2,'items', 0, chestObject.gold, chestObject.id);
             this.chests.add(chest);
         }
         else {
-            chest.setPosition(location[0],location[1]);
+            chest.coins = chestObject.gold;
+            chest.id = chestObject.id;
+            chest.setPosition(chestObject.x * 2, chestObject.y * 2);
             chest.makeActive();
         }
     }
@@ -104,7 +112,8 @@ class GameScene extends Phaser.Scene{
         this.events.emit('updateScore', this.score);
         chest.makeInactive();
         //Spawn a new chest
-        this.time.delayedCall(1000,this.spawnChest, [],this);
+        //this.time.delayedCall(1000,this.spawnChest, [],this);
+        this.events.emit('pickUpChest', chest.id);
     }
 
     createMap(){
