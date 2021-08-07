@@ -61,7 +61,7 @@ class GameManager{
         }
       });
 
-      this.scene.events.on('monsterAttacked', (monsterId)=>{  
+      this.scene.events.on('monsterAttacked', (monsterId, playerId)=>{  
         
         //Update spawner
         if (this.monsters[monsterId]){
@@ -70,6 +70,13 @@ class GameManager{
 
           //Check if monster dead
           if (this.monsters[monsterId].health <=0){
+            const { gold } = this.monsters[monsterId];
+
+            //Update player
+            this.players[playerId].updateGold(gold);
+            this.scene.events.emit('updateScore', this.players[playerId].gold);
+            
+            //Removing monster
             this.spawners[this.monsters[monsterId].spawnerId].removeObject(monsterId);
             this.scene.events.emit('monsterRemoved', monsterId);
           }

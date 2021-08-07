@@ -172,11 +172,11 @@ class GameScene extends Phaser.Scene{
     
     }
 
-    enemyOverlap( player, enemy){
+    enemyOverlap(weapon, enemy){
         if (this.player.playerAttacking && !this.player.swordHit){
             this.player.swordHit = true;
             //enemy.makeInactive();
-            this.events.emit('monsterAttacked', enemy.id);
+            this.events.emit('monsterAttacked', enemy.id, this.player.id);
         }
     }
 
