@@ -47,11 +47,17 @@ class GameManager{
     }
 
     setupEventListener(){
-      this.scene.events.on('pickUpChest', (chestId)=>{  
+      this.scene.events.on('pickUpChest', (chestId, playerId)=>{  
         
         //Update spawner
         if (this.chests[chestId]){
+          const { gold } = this.chests[chestId];
+          //Update player
+          this.players[playerId].updateGold(gold);
+          this.scene.events.emit('updateScore', this.players[playerId].gold);
+          //Removing chest
           this.spawners[this.chests[chestId].spawnerId].removeObject(chestId);
+          this.scene.events.emit('chestRemoved', chestId);
         }
       });
 
