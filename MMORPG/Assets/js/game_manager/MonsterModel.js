@@ -15,4 +15,38 @@ class MonsterModel{
         //console.log(this.health);
         this.health -=1;
     }
+
+    move(){
+        const randomPosition = randomNumber(1, 8);
+        switch( randomPosition){
+            case 1:
+                this.x +=32;
+                break;
+            case 2:
+                this.x -=32;
+                break;
+            case 3:
+                this.y +=32;
+                break;
+            case 4:
+                this.y -=32;
+                break;
+            case 5:
+                this.x +=32;
+                this.y +=32;
+                break;
+            case 6:
+                this.x +=32;
+                this.y -=32;
+                break;
+            case 7:
+                this.x -=32;
+                this.y +=32;
+                break;
+            case 8:
+                this.x -=32;
+                this.y -=32;
+                break;
+        }
+    }
 }
