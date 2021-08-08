@@ -46,6 +46,10 @@ class BootScene extends Phaser.Scene{
 
     loadAudio(){
         this.load.audio('goldSound','Assets/audio/Pickup.wav');
+        this.load.audio('monsterDeath','Assets/audio/EnemyDeath.wav');
+        this.load.audio('playerAttack','Assets/audio/PlayerAttack.wav');
+        this.load.audio('playerDamage','Assets/audio/PlayerDamage.wav');
+        this.load.audio('playerDeath','Assets/audio/PlayerDeath.wav');
     }
 
     loadTileMap(){
