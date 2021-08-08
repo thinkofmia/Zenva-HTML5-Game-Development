@@ -1,5 +1,5 @@
 class Spawner{
-    constructor(config, spawnLocations, addObject, deleteObject){
+    constructor(config, spawnLocations, addObject, deleteObject, moveObjects){
         this.id = config.id;
         this.spawnInterval = config.spawnInterval;
         this.limit = config.limit;
@@ -7,6 +7,7 @@ class Spawner{
         this.spawnLocations = spawnLocations;
         this.addObject = addObject;
         this.deleteObject = deleteObject;
+        this.moveObjects = moveObjects;
 
         this.objectsCreated = [];
 
@@ -76,6 +77,7 @@ class Spawner{
             this.objectsCreated.forEach((monster)=>{
                 monster.move;
             });
+            this.moveObjects();
         },1000);
     }
 }
